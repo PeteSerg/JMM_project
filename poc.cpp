@@ -65,12 +65,10 @@ void blackrock(){
         switch(response){
             case RIP:
                 bRRip();
-                good = true;
-                break;
+                return;
             case TEAR:
                 bRTear();
-                good = true;
-                break;
+                return;
             case DESPACITO:
                 std::cout<<"You can't despacito at this time.\n";
                 good = false;
@@ -90,12 +88,10 @@ void bRRip(){
         switch(response){
             case RIP:
                 pRip();
-                good = true;
-                break;
+                return;
             case TEAR:
                 pTear();
-                good = true;
-                break;
+                return;
             case DESPACITO:
                 std::cout<<"You can't despacito at this time.\n";
                 good = false;
