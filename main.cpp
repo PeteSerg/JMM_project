@@ -1,28 +1,25 @@
-// g++ -c main.cpp scene.cpp && g++ main.o scene.o -o sfml-app -lsfml-graphics -lsfml-window -lsfml-system && ./sfml-app
-// First attempt at making something actually worth something
+//g++ -c main.cpp game.cpp && g++ main.o game.o -o sfml-app -lsfml-graphics -lsfml-window -lsfml-system && ./sfml-app
 
-#include "scene.h"
-
-#include <SFML/Graphics.hpp>
+/** This is a basic game I made while following a tutorial
+ *  Its hardcoded to run at 144fps 1080p, but that can be changed
+ *  SFML library is needed in order to compile
+ * */
 
 #include <iostream>
-#include <vector>
+#include "game.h"
 
 int main(){
-    sf::RenderWindow window(sf::VideoMode(400, 400), "Art");
-    while (window.isOpen())
-    {
-        sf::Event event;
-        while (window.pollEvent(event))
-        {
-            if (event.type == sf::Event::Closed)// "close requested" event: we close the window
-                window.close();
-        }
-        window.clear(sf::Color::Black); //CLEAR
-        //DRAW
-        Scene circleScene("sample.scene", &window);
-        circleScene.draw();
-        window.display(); //DISPLAY
+    // Init srand
+    srand(static_cast<unsigned>(time(NULL)));
+    // Init Game engine
+    Game game;
+
+    // Game loop
+    while (game.running()){
+        // Update
+        game.update();
+        // Render
+        game.render();
     }
 
     return 0;
