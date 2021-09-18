@@ -1,3 +1,4 @@
+//g++ main.cpp -lGLU -lGL -lglut
 /**
  *        @file: main.cc
  *      @author: Eric Nelson
