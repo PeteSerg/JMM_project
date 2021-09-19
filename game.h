@@ -6,6 +6,7 @@
 #include <iostream>
 #include <vector>
 #include <ctime>
+#include <sstream>
 
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
@@ -40,16 +41,20 @@ private:
     sf::Thread clock;
     sf::Clock timer;
     bool exit; // used to kill timer thread
-    int tickTime; // How many milliseconds thread will wait between ticks
-    bool hasMovedThisTick; // Stores if player has moved since last time out
-    int moveTimeOut; // Prevent player from moving too quickly
+    // With wait = 4, tock overflows every second + 24 millis
+    int wait; // Higher wait = lower tick speed
+    unsigned char tock;
+    unsigned char animTick;
 
     // Game logic
-    sf::Vector2f playerPos;
+    std::string input;
 
     // Game Objects
-    sf::RectangleShape player;
-    sf::Vector2f playerLast;
+    sf::RectangleShape box;
+    sf::Vector2f boxPos;
+    sf::Texture testTexture;
+    sf::RectangleShape testRect;
+    sf::Sprite testSprite;
 
     sf::RenderWindow *window;
     sf::VideoMode videomode;
@@ -61,13 +66,18 @@ public:
     const bool running() const;
 
     void tick();
+    void animationTick();
 
     void updateText();
     void renderText();
 
     // Game Objects
-    void updatePlayer();
-    void renderPlayer();
+
+    // Game Logic
+    void execute(std::string command);
+
+    void renderBox();
+    void renderTestSprite();
 
     void update();
     void render();
