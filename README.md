@@ -3,9 +3,9 @@ CS3560 Team Project
 
 Pete Sergakis - 
 GH: PeteSerg 
-OU Email: ps769417@ohio.edu \\
+OU Email: ps769417@ohio.edu </br>
 
-This is a prototype. Renders an animation, and allows the player to enter text at the top of the screen.\\
+This is a prototype. Renders an animation, and allows the player to enter text at the top of the screen.</br>
 All you can do is 1. exit with escape, 2. exit by entering "exit", or 3. stop animation by entering "stop"
 
 # Build
