@@ -34,8 +34,8 @@ private:
     sf::Vector2f mousePosView;
 
     // Game logic
-    uint points;
-    uint best;
+    int points;
+    int best;
     float enemySpawnTimer;
     float enemySpawnTimerMax;
     int maxEnemies;
