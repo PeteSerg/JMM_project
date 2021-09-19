@@ -6,9 +6,7 @@
 // x86_64-w64-mingw32-g++ -c main.cpp game.cpp -I/home/xnely/Downloads/SFML-2.5.1/include/
 // x86_64-w64-mingw32-g++ -DSFML_STATIC -I/home/xnely/Downloads/SFML-2.5.1/include -L/home/xnely/Downloads/SFML-2.5.1/lib main.cpp game.cpp -lsfml-graphics-s -lsfml-window-s -lsfml-system-s -lopengl32 -lfreetype -lwinmm -lgdi32 -static-libgcc -static-libstdc++
 
-/** This is a basic game I made while following a tutorial
- *  Its hardcoded to run at 144fps 1080p, but that can be changed
- *  SFML library is needed in order to compile
+/** 
  * */
 
 #include <iostream>
