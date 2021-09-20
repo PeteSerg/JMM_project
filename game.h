@@ -44,7 +44,6 @@ private:
     // With wait = 4, tock overflows every second + 24 millis
     int wait; // Higher wait = lower tick speed
     unsigned char tock;
-    unsigned char animTick;
 
     // Game logic
     std::string input;
@@ -66,7 +65,6 @@ public:
     const bool running() const;
 
     void tick();
-    void animationTick();
 
     void updateText();
     void renderText();

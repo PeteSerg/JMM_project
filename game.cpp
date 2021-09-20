@@ -126,37 +126,16 @@ void Game::execute(std::string command){
 void Game::tick(){
     while(!exit){
         ++tock; // Overflows to zero after 255
-        animationTick();
         sf::sleep(sf::milliseconds(wait));
-    }
-}
-// 8 animation ticks/second
-void Game::animationTick(){
-    if(tock<=32){
-        animTick = 0;
-    }else if(tock<=64){
-        animTick = 1;
-    }else if(tock<=96){
-        animTick = 2;
-    }else if(tock<=128){
-        animTick = 3;
-    }else if(tock<=160){
-        animTick = 4;
-    }else if(tock<=192){
-        animTick = 5;
-    }else if(tock<=224){
-        animTick = 6;
-    }else{ //if(tock<=256){
-        animTick = 7;
     }
 }
 
 void Game::renderBox(){
-    box.setPosition(boxPos.x + animTick*1.f - 2.f*(animTick-4)*(animTick>3),boxPos.y);
+    box.setPosition(boxPos.x + (tock>>5)*1.f - 2.f*((tock>>5)-4)*((tock>>5)>3),boxPos.y);
     window->draw(box);
 }
 void Game::renderTestSprite(){
-    testSprite.setTextureRect(sf::IntRect(0, animTick*50, 50, 50));
+    testSprite.setTextureRect(sf::IntRect(0, (tock>>5)*50, 50, 50)); // 8 states
     window->draw(testSprite);
 }
 
