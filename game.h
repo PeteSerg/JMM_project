@@ -27,8 +27,8 @@ private:
     sf::Font font;
 
     // Text
-    sf::Text currentText;
-    sf::Text bestText;
+    sf::Text inputText;
+    sf::Text outputText;
 
     // Mouse position
     sf::Vector2i mousePosWindow;
@@ -38,19 +38,25 @@ private:
     bool rightPressed, leftPressed, downPressed, upPressed;
 
     // Clock
-    sf::Thread clock;
-    sf::Clock timer;
-    bool exit; // used to kill timer thread
+    /** TODO: Timer thread is not needed. Game should use time elapsed
+     *        since last update to determine tick and use delta for motion.
+     * */
+    //sf::Thread clock;
+    sf::Clock deltaClock; // Used for calculating __ over time ratios
+    sf::Clock clock; // Does not reset, only overflow
+    uint32_t millis;
+    float delta; // Milliseconds elapsed while rendering. Assumes that rendering takes a majority of time.
     // With wait = 4, tock overflows every second + 24 millis
-    int wait; // Higher wait = lower tick speed
-    unsigned char tock;
+    // int wait; // Higher wait = lower tick speed
 
     // Game logic
     std::string input;
+    std::string output;
 
     // Game Objects
     sf::RectangleShape box;
     sf::Vector2f boxPos;
+    bool boxDirection; // false = right
     sf::Texture testTexture;
     sf::RectangleShape testRect;
     sf::Sprite testSprite;
@@ -75,6 +81,7 @@ public:
     void execute(std::string command);
 
     void renderBox();
+    void updateBox();
     void renderTestSprite();
 
     void update();

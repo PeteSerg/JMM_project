@@ -3,14 +3,14 @@
 void Game::initVariables(){
     this->window = nullptr;
     rightPressed = leftPressed = downPressed = upPressed = false;
-    clock.launch();
-    exit = false;
-
-    wait = 4; // 20 millis
+    clock.restart(); // might not be needed
+    deltaClock.restart();
+    delta = millis = 0;
 
     // Player
     box.setSize(sf::Vector2f(50.f,50.f));
     boxPos = sf::Vector2f(0.f,0.f);
+    boxDirection = false;
     if(!testTexture.loadFromFile("spritetest.png")){
         std::cout<<"Could not load sprite texture from file";
         std::exit(0);
@@ -25,18 +25,19 @@ void Game::initVariables(){
         std::cout<<"Could not load font from file";
         std::exit(0);
     }
-    currentText.setString(">");
-    currentText.setFont(font);
-    bestText.setString("");
-    bestText.setFont(font);
-    bestText.setPosition(sf::Vector2f(20, 0));
+    inputText.setString("");
+    inputText.setFont(font);
+    inputText.setPosition(sf::Vector2f(20, 0));
+    outputText.setString(">\n");
+    outputText.setFont(font);
+    outputText.setPosition(sf::Vector2f(0, 0));
 }
 void Game::initWindow(){
     //this->videomode.height = 1080;//600;
     //this->videomode.width = 1920;//800;
     this->window = new sf::RenderWindow(this->videomode.getDesktopMode(), "Java minus minus", sf::Style::Fullscreen | sf::Style::Close);
 
-    this->window->setFramerateLimit(144);
+    this->window->setFramerateLimit(145);
 }
 void Game::initFonts(){
     if(!this->font.loadFromFile("fonts/LiberationMono-Bold.ttf"))std::cerr<<"ERROR::GAME::INITFONTS::Failed to load font LiberationMono-Bold.tff\n";
@@ -46,7 +47,7 @@ void Game::initText(){
 }
 
 // CONSTRUCTORS
-Game::Game() : clock(&Game::tick, this){
+Game::Game() /*: clock(&Game::tick, this)*/{
     this->initVariables();
     this->initWindow();
 }
@@ -65,13 +66,11 @@ void Game::pollEvents(){
         switch(this->ev.type){
             case sf::Event::Closed:
                 this->window->close();
-                exit = true;
                 break;
             case sf::Event::KeyPressed:
                 switch(this->ev.key.code){
                     case sf::Keyboard::Escape:
                         window->close();
-                        exit = true;
                         break;
                     case sf::Keyboard::Right:
                         rightPressed = true;
@@ -117,32 +116,50 @@ void Game::execute(std::string command){
     std::stringstream stream(command);
     std::string word;
     stream>>word;
-    if(!word.compare("exit")) std::exit(0);
-    if(!word.compare("stop")) exit=true;
+    if(!word.compare("exit"))std::exit(0);
+    if(!word.compare("echo")){
+        stream>>word;
+        output = word + '\n' + output;
+    }
 }
 
 
 /** Sets flags based on time elapsed */
 void Game::tick(){
-    while(!exit){
-        ++tock; // Overflows to zero after 255
-        sf::sleep(sf::milliseconds(wait));
-    }
+    millis = clock.getElapsedTime().asMilliseconds();
+    //tock += static_cast<unsigned int>(clock.getElapsedTime().asSeconds()*256); // 0-255 in almost exactly 1 second
+    //tock += clock.getElapsedTime().asMilliseconds()>>2; // 0-255 in 1024 ms
 }
 
 void Game::renderBox(){
-    box.setPosition(boxPos.x + (tock>>5)*1.f - 2.f*((tock>>5)-4)*((tock>>5)>3),boxPos.y);
+    box.setPosition(boxPos.x,boxPos.y);
     window->draw(box);
 }
+void Game::updateBox(){
+    if(boxDirection)
+        if(boxPos.x - 1880 * delta <= 0){ // 1880px/s
+            boxPos.x = 0; boxDirection = 0;
+        }
+        else boxPos.x -= 1880 * delta;
+    else
+        if(boxPos.x + 1880 * delta >= 1880){
+            boxPos.x = 1880; boxDirection = 1;
+        }
+        else boxPos.x += 1880 * delta;
+}
+
 void Game::renderTestSprite(){
-    testSprite.setTextureRect(sf::IntRect(0, (tock>>5)*50, 50, 50)); // 8 states
+    testSprite.setTextureRect(sf::IntRect(0, ((millis>>7)&7)*50, 50, 50)); // 8 states / 1.024 seconds
     window->draw(testSprite);
 }
 
 // PUBLIC
 // UPDATE
 void Game::update() {
-    //tick();
+    tick();
+    // Game Objects
+    //updateBox();
+
     pollEvents();
 
     updateMousePositions();
@@ -151,6 +168,7 @@ void Game::update() {
 }
 
 void Game::render() {
+    deltaClock.restart(); // Begin deltaTimer
     // Clear
     window->clear();
 
@@ -163,6 +181,9 @@ void Game::render() {
 
     // Display
     window->display();
+
+    // Calculate time
+    delta = deltaClock.getElapsedTime().asSeconds();
 }
 
 void Game::updateMousePositions(){
@@ -174,9 +195,10 @@ void Game::updateText(){
 
 }
 void Game::renderText(){
-    window->draw(currentText);
-    bestText.setString(input);
-    window->draw(bestText);
+    inputText.setString(input);
+    window->draw(inputText);
+    outputText.setString(">\n"+output);
+    window->draw(outputText);
 }
 
 // Game Objects
