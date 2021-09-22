@@ -28,3 +28,6 @@ Owen Rutter: GH - OR0611
 Our group is making a text based adventure game. Our goal is to make a game with
 multiple paths for the player to explore. We're hoping to include simple visuals
 and graphics with each stage. 
+
+# Date & Time
+Tuesdays & Thursdays 6:00pm - 7:00pm
