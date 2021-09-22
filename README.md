@@ -18,3 +18,7 @@ To generate .exe for windows (statically linked):
 $ x86_64-w64-mingw32-g++ -c main.cpp game.cpp -I/path/to/windows/sfml/binary/include/
 $ x86_64-w64-mingw32-g++ -DSFML_STATIC -I/path/to/windows/sfml/include -L/path/to/windows/binary/lib main.cpp game.cpp -lsfml-graphics-s -lsfml-window-s -lsfml-system-s -lopengl32 -lfreetype -lwinmm -lgdi32 -static-libgcc -static-libstdc++
 ```
+Pete Sergakis: GH - PeteSerg
+Gabe Havas: GH - ghavas444
+Eric Nelson: GH - xnely
+Owen Rutter: GH - OR0611
