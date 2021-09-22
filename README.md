@@ -34,7 +34,9 @@ Owen Rutter- lead writer
 
 Eric Nelson- top down researcher
 
-Pete Sergakis
+Pete Sergakis - Team organizer + programming
+
+Gabe Havas - Programming
 
 4. We are using SFML (Simple and Fast Multimedia Library) to handle graphics
 5. We are using VSCode's IntelliSense to easily reference documentation elsewhere in our code. We are using no tools to generate documentation at this time.
