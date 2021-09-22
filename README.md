@@ -18,3 +18,11 @@ To generate .exe for windows (statically linked):
 $ x86_64-w64-mingw32-g++ -c main.cpp game.cpp -I/path/to/windows/sfml/binary/include/
 $ x86_64-w64-mingw32-g++ -DSFML_STATIC -I/path/to/windows/sfml/include -L/path/to/windows/binary/lib main.cpp game.cpp -lsfml-graphics-s -lsfml-window-s -lsfml-system-s -lopengl32 -lfreetype -lwinmm -lgdi32 -static-libgcc -static-libstdc++
 ```
+
+# Tools
+1. 
+2. 
+3. 
+4. We are using SFML (Simple and Fast Multimedia Library) to handle graphics
+5. We are using VSCode's IntelliSense to easily reference documentation elsewhere in our code. We are using no tools to generate documentation at this time.
+6. There should be a build system. We will probably use make, and we may use premake.
