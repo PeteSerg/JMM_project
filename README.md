@@ -1,8 +1,8 @@
 # JMM_project
 CS3560 Team Project
 
-Pete Sergakis - 
-GH: PeteSerg 
+Pete Sergakis -
+GH: PeteSerg
 OU Email: ps769417@ohio.edu </br>
 
 This is a prototype. Renders an animation, and allows the player to enter text at the top of the screen.</br>
@@ -21,6 +21,20 @@ $ x86_64-w64-mingw32-g++ -DSFML_STATIC -I/path/to/windows/sfml/include -L/path/t
 #Git HW 5
 Team Name: Java Minus Minus (C++ group 1)
 Maintainer: Pete Sergakis GH-PeteSerg
+
+Pete Sergakis: GH - PeteSerg
+Gabe Havas: GH - ghavas444
+Eric Nelson: GH - xnely
+Owen Rutter: GH - OR0611
+
+# Project
+
+Our group is making a text based adventure game. Our goal is to make a game with
+multiple paths for the player to explore. We're hoping to include simple visuals
+and graphics with each stage. 
+
+# Date & Time
+Tuesdays & Thursdays 6:00pm - 7:00pm
 
 # Tools
 1. 1. We will use the programming language C++ as our main base for the project, and 
