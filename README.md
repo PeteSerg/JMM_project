@@ -1,8 +1,8 @@
 # JMM_project
 CS3560 Team Project
 
-Pete Sergakis - 
-GH: PeteSerg 
+Pete Sergakis -
+GH: PeteSerg
 OU Email: ps769417@ohio.edu </br>
 
 This is a prototype. Renders an animation, and allows the player to enter text at the top of the screen.</br>
@@ -22,3 +22,9 @@ Pete Sergakis: GH - PeteSerg
 Gabe Havas: GH - ghavas444
 Eric Nelson: GH - xnely
 Owen Rutter: GH - OR0611
+
+# Project
+
+Our group is making a text based adventure game. Our goal is to make a game with
+multiple paths for the player to explore. We're hoping to include simple visuals
+and graphics with each stage. 
