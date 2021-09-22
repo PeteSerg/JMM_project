@@ -18,6 +18,9 @@ To generate .exe for windows (statically linked):
 $ x86_64-w64-mingw32-g++ -c main.cpp game.cpp -I/path/to/windows/sfml/binary/include/
 $ x86_64-w64-mingw32-g++ -DSFML_STATIC -I/path/to/windows/sfml/include -L/path/to/windows/binary/lib main.cpp game.cpp -lsfml-graphics-s -lsfml-window-s -lsfml-system-s -lopengl32 -lfreetype -lwinmm -lgdi32 -static-libgcc -static-libstdc++
 ```
+#Git HW 5
+Team Name: Java Minus Minus (C++ group 1)
+Maintainer: Pete Sergakis GH-PeteSerg
 
 # Tools
 1. 1. We will use the programming language C++ as our main base for the project, and 
