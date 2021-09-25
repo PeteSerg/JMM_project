@@ -28,7 +28,9 @@ private:
 
     // Text
     sf::Text inputText;
+    float inputPosition;
     sf::Text outputText;
+    float outputPostion;
 
     // Mouse position
     sf::Vector2i mousePosWindow;
@@ -79,6 +81,7 @@ public:
 
     // Game Logic
     void execute(std::string command);
+    void updateTTY(std::string out);
 
     void renderBox();
     void updateBox();

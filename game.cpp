@@ -27,9 +27,11 @@ void Game::initVariables(){
     }
     inputText.setString("");
     inputText.setFont(font);
+    inputPosition = -10.f;
     inputText.setPosition(sf::Vector2f(20, 0));
     outputText.setString(">\n");
     outputText.setFont(font);
+    outputPostion = -10.f;
     outputText.setPosition(sf::Vector2f(0, 0));
 }
 void Game::initWindow(){
@@ -116,13 +118,24 @@ void Game::execute(std::string command){
     std::stringstream stream(command);
     std::string word;
     stream>>word;
+    // Switch over command
     if(!word.compare("exit"))std::exit(0);
-    if(!word.compare("echo")){
-        stream>>word;
-        output = word + '\n' + output;
+    else if(!word.compare("echo")){
+        std::string temp;
+        while(stream>>word)temp += word + ' ';
+        updateTTY(temp);
+    }
+    else{ // Default case
+        updateTTY(word+": command not found");
     }
 }
-
+void Game::updateTTY(std::string out){
+    output = output + "> " + input + '\n' + out + '\n';
+    if(inputPosition <= 1000)inputPosition += 60;
+    else{
+        outputPostion -= 60;
+    }
+}
 
 /** Sets flags based on time elapsed */
 void Game::tick(){
@@ -192,12 +205,13 @@ void Game::updateMousePositions(){
 }
 
 void Game::updateText(){
-
+    inputText.setPosition(sf::Vector2f(30.f,inputPosition));
+    outputText.setPosition(sf::Vector2f(0.f,outputPostion));
 }
 void Game::renderText(){
     inputText.setString(input);
     window->draw(inputText);
-    outputText.setString(">\n"+output);
+    outputText.setString(output+">\n");
     window->draw(outputText);
 }
 
