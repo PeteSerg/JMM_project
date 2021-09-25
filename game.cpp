@@ -125,6 +125,10 @@ void Game::execute(std::string command){
         while(stream>>word)temp += word + ' ';
         updateTTY(temp);
     }
+    else if(!word.compare("clear")){
+        output = "";
+        outputPostion = inputPosition = 0.f;
+    }
     else{ // Default case
         updateTTY(word+": command not found");
     }
