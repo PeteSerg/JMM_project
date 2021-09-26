@@ -52,7 +52,7 @@ void Game::update() {
 
 void Game::render() {
     deltaClock.restart(); // Begin deltaTimer
-    // Clear
+
     window->clear();
 
     // Render
@@ -64,9 +64,8 @@ void Game::render() {
     // Test Sprite
     renderTestSprite();
 
-    // Display
     window->display();
 
-    // Calculate time
+    // Calculate deltaTime
     delta = deltaClock.getElapsedTime().asSeconds();
 }
