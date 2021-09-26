@@ -13,11 +13,6 @@ public:
     sf::Event ev;
 };
 
-// Global variables
-extern bool rightPressed, leftPressed, downPressed, upPressed;
-extern sf::Vector2i mousePosWindow;
-extern sf::Vector2f mousePosView;;
-
 inline void Event::pollEvents(){
     while(window->pollEvent(ev)){
         switch(ev.type){

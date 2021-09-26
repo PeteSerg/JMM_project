@@ -25,10 +25,6 @@ private:
     // Scenes
     scene::Default defaultScene;
 
-    // Testing data
-    sf::Texture testTexture;
-    sf::Sprite testSprite;
-
 public:
     Game(/* args */);
     ~Game();

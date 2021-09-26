@@ -12,3 +12,7 @@ extern sf::VideoMode videomode;
 extern uint32_t millis;
 /** Seconds since last update */
 extern float delta;
+/** State of keyboard keys */
+extern bool rightPressed, leftPressed, downPressed, upPressed;
+// extern sf::Vector2i mousePosWindow; // Not implemented
+// extern sf::Vector2f mousePosView;;
