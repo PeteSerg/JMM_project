@@ -10,7 +10,7 @@
 #include <SFML/Audio.hpp>
 #include <SFML/Network.hpp>
 
-#include "window.h"
+#include "globals.h"
 
 class Event{
 public:
@@ -64,3 +64,8 @@ inline void Event::pollEvents(){
         }
     }
 }
+
+// void updateMousePositions(){
+//     mousePosWindow = sf::Mouse::getPosition(*window);
+//     mousePosView = window->mapPixelToCoords(mousePosWindow);
+// }

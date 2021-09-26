@@ -3,6 +3,8 @@
  * */
 #pragma once
 
+#include "scene/default.h"
+
 #include <iostream>
 #include <vector>
 #include <ctime>
@@ -18,17 +20,17 @@ class Game
 {
 private:
     void initVariables();
+    void initScene();
 
     // Clock
     sf::Clock deltaClock; // Used for calculating __ over time ratios
     sf::Clock clock; // Does not reset. Overflow used for cyclical animation
 
+    // Scenes
+    scene::Default defaultScene;
+
     // Testing data
-    sf::RectangleShape box;
-    sf::Vector2f boxPos;
-    bool boxDirection;
     sf::Texture testTexture;
-    sf::RectangleShape testRect;
     sf::Sprite testSprite;
 
 public:
@@ -38,8 +40,6 @@ public:
     void tick();
 
     // Test data
-    void renderBox();
-    void updateBox();
     void renderTestSprite();
 
     void update();
@@ -47,7 +47,4 @@ public:
 
     enum Scene {Default};
     Scene scene;
-
-    uint32_t millis;
-    float delta; // Milliseconds elapsed while rendering. Assumes that rendering takes a majority of time.
 };
