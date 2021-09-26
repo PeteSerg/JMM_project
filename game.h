@@ -3,18 +3,14 @@
  * */
 #pragma once
 
+#include "globals.h"
+
 #include "scene/default.h"
 
 #include <iostream>
 #include <vector>
 #include <ctime>
 #include <sstream>
-
-#include <SFML/Graphics.hpp>
-#include <SFML/System.hpp>
-#include <SFML/Window.hpp>
-#include <SFML/Audio.hpp>
-#include <SFML/Network.hpp>
 
 class Game
 {

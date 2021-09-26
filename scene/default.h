@@ -1,7 +1,5 @@
 #include "../globals.h"
 
-#include <SFML/Graphics.hpp>
-
 namespace scene{
     class Default{
         public:
