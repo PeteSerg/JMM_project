@@ -47,6 +47,10 @@ namespace scene{
      *  to do with player movement.
      *  We can use the current state of the arrow keys
      *  to determine how the box should move.
+     * 
+     *  A real implementation would use vars like leftReleased
+     *  (implemented in event.h) to give precedence to the first
+     *  key to be pressed and held
      * */
     void Default::updateBox(){
         if(leftPressed && boxPos.x - 500 * delta <= 0) boxPos.x = 0;             // Collide with left edge of screen
