@@ -8,12 +8,12 @@
 
 class Event{
 public:
-    void pollEvents();
-
+    void update();
+private:
     sf::Event ev;
 };
 
-inline void Event::pollEvents(){
+inline void Event::update(){
     while(window->pollEvent(ev)){
         switch(ev.type){
             case sf::Event::Closed:
@@ -50,11 +50,21 @@ inline void Event::pollEvents(){
                         upPressed = false; break;
                 }
                 break;
+            case sf::Event::MouseButtonPressed:
+                switch(ev.mouseButton.button){
+                    case sf::Mouse::Button::Left:
+                        leftClick = true; break;
+                }
+                break;
+            case sf::Event::MouseButtonReleased:
+                switch(ev.mouseButton.button){
+                    case sf::Mouse::Button::Left:
+                        leftClick = false; break;
+                }
+                break;
         }
     }
+    // Update mouse position
+    mousePosWindow = sf::Mouse::getPosition(*window);
+    mousePosView = window->mapPixelToCoords(mousePosWindow);
 }
-
-// void updateMousePositions(){
-//     mousePosWindow = sf::Mouse::getPosition(*window);
-//     mousePosView = window->mapPixelToCoords(mousePosWindow);
-// }

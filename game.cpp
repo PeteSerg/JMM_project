@@ -1,13 +1,23 @@
 #include "game.h"
 #include "globals.h"
 #include "event.h"
+
+// ONLY INCLUDE SCENES HERE
+#include "scene/menu.h"
+#include "scene/default.h"
+
 // Private Functions
 void Game::initVariables(){
     delta = millis = 0;
-    scene = Default;
+    currentScene = Scene::Default;
+    /** DEBUG: load menu currentScene*/
+    currentScene = Scene::Menu;
+    scene::menu::init();
+    /** END: Debug */
 }
+// The default scene is always initialized
 void Game::initScene(){
-    defaultScene.init();
+    scene::Default::init();
 }
 
 // CONSTRUCTORS
@@ -28,9 +38,12 @@ void Game::update() {
     tick();
 
     // Update
-    switch(scene){
-        case Default:
-            defaultScene.update();
+    switch(currentScene){
+        case Scene::Default:
+            scene::Default::update();
+            break;
+        case Scene::Menu:
+            scene::menu::update();
             break;
     }
 }
@@ -41,9 +54,12 @@ void Game::render() {
     window->clear();
 
     // Render
-    switch(scene){
-        case Default:
-            defaultScene.render();
+    switch(currentScene){
+        case Scene::Default:
+            scene::Default::render();
+            break;
+        case Scene::Menu:
+            scene::menu::render();
             break;
     }
 

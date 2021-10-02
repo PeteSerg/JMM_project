@@ -5,8 +5,6 @@
 
 #include "globals.h"
 
-#include "scene/default.h"
-
 #include <iostream>
 #include <vector>
 #include <ctime>
@@ -15,15 +13,13 @@
 class Game
 {
 private:
+
     void initVariables();
     void initScene();
 
     // Clock
     sf::Clock deltaClock; // Used for calculating __ over time ratios
     sf::Clock clock; // Does not reset. Overflow used for cyclical animation
-
-    // Scenes
-    scene::Default defaultScene;
 
 public:
     Game(/* args */);
@@ -36,7 +32,4 @@ public:
 
     void update();
     void render();
-
-    enum Scene {Default};
-    Scene scene;
 };

@@ -1,3 +1,4 @@
+#include "scene/scene.h"
 
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
@@ -5,6 +6,7 @@
 #include <SFML/Audio.hpp>
 #include <SFML/Network.hpp>
 
+extern Scene currentScene;
 /** Render window. WARN: Can only be referenced by main thread */
 extern sf::RenderWindow *window;
 extern sf::VideoMode videomode;
@@ -14,5 +16,9 @@ extern uint32_t millis;
 extern float delta;
 /** State of keyboard keys */
 extern bool rightPressed, leftPressed, downPressed, upPressed;
-// extern sf::Vector2i mousePosWindow; // Not implemented
-// extern sf::Vector2f mousePosView;;
+/** State of mouse clicks */
+extern bool leftClick;
+/** Position of mouse relative to window */
+extern sf::Vector2i mousePosWindow;
+/** Position of mouse on screen */
+extern sf::Vector2f mousePosView;

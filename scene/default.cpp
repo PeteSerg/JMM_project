@@ -1,3 +1,10 @@
+/** WARN: DEPRICATED
+ * 
+ * THIS FILE IS NO LONGER IN USE.
+ * 
+ * scenes are now header-only to simplify the process of adding a scene
+ * */
+
 #include "default.h"
 
 #include <iostream>

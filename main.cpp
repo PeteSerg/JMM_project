@@ -13,11 +13,15 @@
 /** Globals are used to allow easy refactoring of code.
  * Globals are declared here
  */
+Scene currentScene = Scene::Default;
 sf::RenderWindow *window;
 sf::VideoMode videomode;
 uint32_t millis;
 float delta;
 bool rightPressed, leftPressed, downPressed, upPressed = 0;
+bool leftClick = 0;
+sf::Vector2i mousePosWindow;
+sf::Vector2f mousePosView;
 
 int main(){
     // Init window
@@ -29,8 +33,8 @@ int main(){
 
     // Game loop
     while (window->isOpen()){
+        event.update();
         // Update
-        event.pollEvents();
         game.update();
         // Render
         game.render();

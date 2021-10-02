@@ -8,7 +8,6 @@
                 "-g",
                 "${workspaceFolder}/main.cpp",
                 "${workspaceFolder}/game.cpp",
-                "${workspaceFolder}/scene/default.cpp",
                 "-o",
                 "${workspaceFolder}/bin/main",
                 "-lsfml-graphics",
