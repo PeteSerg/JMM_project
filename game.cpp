@@ -39,6 +39,9 @@ void Game::update() {
         case Scene::Menu:
             scene::menu::update();
             break;
+        case Scene::Lvl1:
+            scene::lvl1::update();
+            break;
     }
 }
 
@@ -54,6 +57,9 @@ void Game::render() {
             break;
         case Scene::Menu:
             scene::menu::render();
+            break;
+        case Scene::Lvl1:
+            scene::lvl1::render();
             break;
     }
 

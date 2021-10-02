@@ -5,7 +5,7 @@
 #include <SFML/Network.hpp>
 
 #pragma once
-enum class Scene {Default, Menu};
+enum class Scene {Default, Menu, Lvl1};
 
 extern Scene currentScene;
 /** Render window. WARN: Can only be referenced by main thread */

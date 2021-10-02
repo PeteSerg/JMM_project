@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../globals.h"
+#include "scene.h"
 
 #include <vector>
 #include <iostream>
@@ -16,6 +16,7 @@ namespace scene{
         /** DEBUG: temp indicate purpose of menu*/
         sf::Font ubuntuMono;
         sf::Text warn;
+        sf::Texture texture; // USED in sprite test
         /** END: DEBUG*/
 
         /** Initialize sets all initial variables for the scene
@@ -26,14 +27,14 @@ namespace scene{
             sf::RectangleShape rect;
             rect.setPosition(710.f, 290.f);
             rect.setSize(sf::Vector2f(500.f, 500.f));
-            rect.setFillColor(sf::Color(128, 126, 128, 255));
+            rect.setFillColor(sf::Color(64, 64, 128, 255));
             rects.push_back(rect);
             // indicate purpose of menu
             if(!ubuntuMono.loadFromFile("fonts/UbuntuMono-R.ttf")){
                 std::cout<<"Could not load font from file";
                 std::exit(0);
             }
-            warn.setString("This is the menu scene (unimplemented). Click the box to switch to the default scene.");
+            warn.setString("This is the menu scene (unimplemented). Click the box to switch to Level 1.");
             warn.setFont(ubuntuMono);
             warn.setPosition(sf::Vector2f(400, 930));
         }
@@ -62,13 +63,14 @@ namespace scene{
         }
         /** Any game logic branches off from here **/
         inline void update(){ /** TODO: Implement */
+            // Destroy current scene and initialize next
             // Switch to different scene based on menu selection
-            // Scene does not need to be initialized bc default is always initialized
             if(leftClick){ // Find mouse position on leftClick
                 if(mousePosWindow.x >= 710.f && mousePosWindow.x <= 1210){
                     if(mousePosWindow.y >= 290.f && mousePosWindow.y <= 790){
                         destroy();
-                        currentScene = Scene::Default;
+                        scene::lvl1::init();
+                        currentScene = Scene::Lvl1;
                     }
                 }
             }

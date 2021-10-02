@@ -1,5 +1,5 @@
 #pragma once
-#include "../globals.h"
+#include "scene.h"
 
 #include <iostream>
 
@@ -11,7 +11,7 @@ namespace scene{
         // Declarations
         /** Avoid many explicit declarations.
          *  Try to use things like vectors that are only
-         *  populated on initialization
+         *  populated on initialization (as seen in scene/menu.h)
          */
         void updateBox();
         void renderSprite();
