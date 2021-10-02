@@ -1,5 +1,11 @@
 #include "game.h"
 #include "scene/scene.h"
+
+#include <iostream>
+#include <vector>
+#include <ctime>
+#include <sstream>
+
 // Private Functions
 void Game::initVariables(){
     delta = millis = 0;
@@ -39,8 +45,8 @@ void Game::update() {
         case Scene::Menu:
             scene::menu::update();
             break;
-        case Scene::Lvl1:
-            scene::lvl1::update();
+        case Scene::Lvl:
+            scene::lvl::update();
             break;
     }
 }
@@ -58,8 +64,8 @@ void Game::render() {
         case Scene::Menu:
             scene::menu::render();
             break;
-        case Scene::Lvl1:
-            scene::lvl1::render();
+        case Scene::Lvl:
+            scene::lvl::render();
             break;
     }
 

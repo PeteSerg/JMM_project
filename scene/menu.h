@@ -5,9 +5,8 @@
 #include <vector>
 #include <iostream>
 
-/** There is no logical reason to use a class here
- *  This file is simply used to physically seporate
- *  scene-specific code from game.cpp
+/** Note that only headers are used to make
+ *  adding new scenes easy
  * */
 namespace scene{
     namespace menu{
@@ -34,7 +33,7 @@ namespace scene{
                 std::cout<<"Could not load font from file";
                 std::exit(0);
             }
-            warn.setString("This is the menu scene (unimplemented). Click the box to switch to Level 1.");
+            warn.setString("This is the menu scene (unimplemented). Click the box to switch to Level.");
             warn.setFont(ubuntuMono);
             warn.setPosition(sf::Vector2f(400, 930));
         }
@@ -69,8 +68,8 @@ namespace scene{
                 if(mousePosWindow.x >= 710.f && mousePosWindow.x <= 1210){
                     if(mousePosWindow.y >= 290.f && mousePosWindow.y <= 790){
                         destroy();
-                        scene::lvl1::init();
-                        currentScene = Scene::Lvl1;
+                        scene::lvl::init();
+                        currentScene = Scene::Lvl;
                     }
                 }
             }

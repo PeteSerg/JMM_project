@@ -5,11 +5,6 @@
 
 #include "globals.h"
 
-#include <iostream>
-#include <vector>
-#include <ctime>
-#include <sstream>
-
 class Game
 {
 private:

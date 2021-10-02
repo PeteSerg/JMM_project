@@ -5,7 +5,7 @@
  * */
 #include "menu.h"
 #include "default.h"
-#include "lvl1.h"
+#include "lvl.h"
 
 #include "../globals.h"
 
