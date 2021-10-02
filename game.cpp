@@ -1,11 +1,5 @@
 #include "game.h"
-#include "globals.h"
-#include "event.h"
-
-// ONLY INCLUDE SCENES HERE
-#include "scene/menu.h"
-#include "scene/default.h"
-
+#include "scene/scene.h"
 // Private Functions
 void Game::initVariables(){
     delta = millis = 0;

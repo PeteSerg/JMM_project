@@ -3,6 +3,7 @@
 #include "../globals.h"
 
 #include <vector>
+#include <iostream>
 
 /** There is no logical reason to use a class here
  *  This file is simply used to physically seporate
