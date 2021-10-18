@@ -11,12 +11,15 @@
 
 #include <iostream>
 #include "game.h"
+#include "menu.h"
 
 int main(){
     // Init srand
     srand(static_cast<unsigned>(time(NULL)));
     // Init Game engine
     Game game;
+    //Init Menu
+    Menu menu(window.getSize().x, window.getSize().y);
 
     // Game loop
     while (game.running()){
@@ -24,6 +27,12 @@ int main(){
         game.update();
         // Render
         game.render();
+    }
+
+    menu.draw(window);
+    while(window.pollEvent(event))
+    {
+        menu.runWhile();
     }
 
     return 0;
