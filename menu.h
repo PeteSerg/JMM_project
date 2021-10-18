@@ -24,11 +24,12 @@ class Menu {
         void draw(sf::RenderWindow &window);
         void moveUp();
         void moveDown();
-        int getPressedItem() {return selectedItemIndex};
+        int getPressedItem() {return selectedItemIndex;}
         void runWhile();
 
     private:
         int selectedItemIndex;
         sf::Font font;
         sf::Text menu[MAX_NUMBER_OF_ITEMS];
-}
+        sf::RenderWindow *window;
+};

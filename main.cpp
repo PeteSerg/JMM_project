@@ -19,7 +19,7 @@ int main(){
     // Init Game engine
     Game game;
     //Init Menu
-    Menu menu(window.getSize().x, window.getSize().y);
+    Menu menu(game.window.getSize().x, game.window.getSize().y);
 
     // Game loop
     while (game.running()){
@@ -29,8 +29,9 @@ int main(){
         game.render();
     }
 
-    menu.draw(window);
-    while(window.pollEvent(event))
+    sf::Window::pollEvent(sf::Event);
+    menu.draw(game.window);
+    while(window.pollEvent(sf::Event))
     {
         menu.runWhile();
     }
