@@ -11,8 +11,8 @@ void Game::initVariables(){
     delta = millis = 0;
     currentScene = Scene::Default;
     /** DEBUG: load menu currentScene*/
-    currentScene = Scene::Menu;
-    scene::menu::init();
+    currentScene = Scene::TextBased;
+    scene::textbased::init();
     /** END: Debug */
 }
 // The default scene is always initialized
@@ -45,6 +45,9 @@ void Game::update() {
         case Scene::Menu:
             scene::menu::update();
             break;
+        case Scene::TextBased:
+            scene::textbased::update();
+            break;
         case Scene::Lvl:
             scene::lvl::update();
             break;
@@ -63,6 +66,9 @@ void Game::render() {
             break;
         case Scene::Menu:
             scene::menu::render();
+            break;
+        case Scene::TextBased:
+            scene::textbased::render();
             break;
         case Scene::Lvl:
             scene::lvl::render();

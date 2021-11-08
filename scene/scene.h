@@ -6,6 +6,7 @@
 #include "menu.h"
 #include "default.h"
 #include "lvl.h"
+#include "textbased.h"
 
 #include "../globals.h"
 
