@@ -5,6 +5,7 @@
 
 #include <vector>
 #include <iostream>
+#include <fstream>
 
 namespace scene{
     namespace textbased{
@@ -42,7 +43,89 @@ namespace scene{
         uint32_t timeOut = 0; // WARN: no overflow guard
         int options = 4;
 
+        inline void readStateTree(){ // State tree is forever loaded
+            std::ifstream file;
+            file.open("tree/jmm.tree");
+            if(file.fail()){
+                std::cout<<"The file could not be opened.";
+                return;
+            }
+            std::map<std::string, gameState*> map; // Refer to state by symbol "initial/next/etc"
+            std::map<std::string, std::pair<int, gameState*>> wait; // If a nextState has not yet been defined
+            std::string line;
+            gameState *state;
+            while(!file.eof()){
+                state = new gameState;
+                std::getline(file, line); //state init
+                if(!line.find("state")){// state is at 0
+                    line = line.substr(6);
+                    if(line.find("init") == 0)
+                    current = state; // INIT STATE
+                    map.insert(std::pair<std::string, gameState*>(line, state)); // add symbol
+                    if(wait.find(line) != wait.end()){
+                        wait.at(line).second->nextState[wait.at(line).first] = state;
+                        wait.erase(line);
+                    }
+                }else{std::cout<<"state not found at 0 for line:"<<line<<'\n';return;}
+
+                std::getline(file, line); // prompt "This has been read from a file"
+                line = line.substr(line.find_first_not_of(" \n\r\t\f\v"));
+                if(!line.find("prompt")){
+                    line = line.substr(6);
+                    state->prompt = line;
+                }else{std::cout<<"prompt not found";return;}
+
+                std::getline(file, line); // sprite 0
+                line = line.substr(line.find_first_not_of(" \n\r\t\f\v"));
+                if(!line.find("sprite")){
+                    line = line.substr(6);
+                    state->sprite = std::stoi(line);
+                }else{std::cout<<"sprite index not found";return;}
+
+                std::getline(file, line); // options 1
+                line = line.substr(line.find_first_not_of(" \n\r\t\f\v"));
+                if(!line.find("options")){
+                    line = line.substr(7);
+                    state->options = std::stoi(line);
+                }else{std::cout<<"options index not found";return;}
+
+                std::getline(file, line); // optionPrompt{
+                line = line.substr(line.find_first_not_of(" \n\r\t\f\v"));
+                if(!line.find("optionPrompt{")){
+                    std::getline(file, line); // YOOOOOO
+                    line = line.substr(line.find_first_not_of(" \n\r\t\f\v"));
+                    int i = 0;
+                    while(line != "}"){
+                        state->optionPrompts[i] = line;
+                        std::getline(file, line); // }
+                        line = line.substr(line.find_first_not_of(" \n\r\t\f\v"));
+                        ++i;
+                    }
+                }else{std::cout<<"optionPrompt{ not found";return;}
+
+                std::getline(file, line); // nextState{
+                line = line.substr(line.find_first_not_of(" \n\r\t\f\v"));
+                if(!line.find("nextState{")){
+                    std::getline(file, line); // next
+                    line = line.substr(line.find_first_not_of(" \n\r\t\f\v"));
+                    int i = 0;
+                    while(line != "}"){
+                        if(map.find(line) == map.end()) {
+                            state->nextState[i] = nullptr;
+                            wait.insert(std::pair<std::string, std::pair<int, gameState*>>(line, std::pair<int, gameState*>(i, state)));
+                        }else state->nextState[i] = map.at(line);
+                        std::getline(file, line); // }
+                        line = line.substr(line.find_first_not_of(" \n\r\t\f\v"));
+                        ++i;
+                    }
+                }else{std::cout<<"optionPrompt{ not found";return;}
+            }
+        }
+
+        inline void reflectState();
+
         inline void init(){
+            readStateTree();
             // Sprite
             if(!texture.loadFromFile("textures/spritetest.png")){
                 std::cout<<"Could not load sprite texture from file";
@@ -84,6 +167,7 @@ namespace scene{
             optionRect[3].setPosition(1440,900);
             optionRect[3].setSize(rectFourthSize);
             optionRect[3].setFillColor(colors[3]);
+            reflectState();
         }
 
         inline void destroy(){

@@ -1,0 +1,18 @@
+state init
+    prompt This has been read from a file
+    sprite 0
+    options 1
+    optionPrompt{
+        YOOOOOO
+    }
+    nextState{
+        next
+    }
+state next
+    prompt state switched
+    sprite 0
+    options 0
+    optionPrompt{
+    }
+    nextState{
+    }
