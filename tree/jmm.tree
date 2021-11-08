@@ -1,18 +1,62 @@
 state init
     prompt This has been read from a file
     sprite 0
+    options 4
+    optionPrompt{
+        Prompt with 3 options
+        Prompt with 2 options
+        Prompt with 1 option
+        last option
+    }
+    nextState{
+        3options
+        2options
+        1option
+        lastOption
+    }
+state 3options
+    prompt 3 options epic
+    sprite 0
+    options 3
+    optionPrompt{
+        Prompt with 2 options
+        Prompt with 1 option
+        last option
+    }
+    nextState{
+        2options
+        1option
+        lastOption
+    }
+state 2options
+    prompt 2 options super coolwow
+    sprite 0
+    options 2
+    optionPrompt{
+        Prompt with 1 option
+        last option
+    }
+    nextState{
+        1option
+        lastOption
+    }
+state 1option
+    prompt 1 option amazing
+    sprite 0
     options 1
     optionPrompt{
-        YOOOOOO
+        last option
     }
     nextState{
-        next
+        lastOption
     }
-state next
-    prompt state switched
+state lastOption
+    prompt The tree can also go back onto itself
     sprite 0
-    options 0
+    options 1
     optionPrompt{
+        back to init
     }
     nextState{
+        init
     }

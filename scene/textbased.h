@@ -27,6 +27,9 @@ namespace scene{
         const sf::Vector2f rectThirdSize  = sf::Vector2f(640.f, 270.f);
         const sf::Vector2f rectHalfSize   = sf::Vector2f(960.f, 270.f);
         const sf::Vector2f rectWholeSize  = sf::Vector2f(1920.f, 270.f);
+        const int rectHalfOffset = 960;
+        const int rectThirdOffset = 640;
+        const int rectFourthOffset = 480;
 
         sf::Texture texture;
         sf::Sprite sprite;
@@ -51,7 +54,7 @@ namespace scene{
                 return;
             }
             std::map<std::string, gameState*> map; // Refer to state by symbol "initial/next/etc"
-            std::map<std::string, std::pair<int, gameState*>> wait; // If a nextState has not yet been defined
+            std::multimap<std::string, std::pair<int, gameState*>> wait; // If a nextState has not yet been defined
             std::string line;
             gameState *state;
             while(!file.eof()){
@@ -62,9 +65,12 @@ namespace scene{
                     if(line.find("init") == 0)
                     current = state; // INIT STATE
                     map.insert(std::pair<std::string, gameState*>(line, state)); // add symbol
-                    if(wait.find(line) != wait.end()){
-                        wait.at(line).second->nextState[wait.at(line).first] = state;
-                        wait.erase(line);
+                    std::multimap<std::string, std::pair<int, gameState*>>::iterator it;
+                    while(wait.find(line) != wait.end()){
+                        it = wait.find(line);
+                        it->second.second->nextState[it->second.first] = state;
+                        //wait.at(line).second->nextState[wait.at(line).first] = state;
+                        wait.erase(it);
                     }
                 }else{std::cout<<"state not found at 0 for line:"<<line<<'\n';return;}
 
@@ -122,7 +128,7 @@ namespace scene{
             }
         }
 
-        inline void reflectState();
+        inline void reflectState(); // reflectState is used in init
 
         inline void init(){
             readStateTree();
@@ -202,24 +208,36 @@ namespace scene{
                 optionRect[0].setSize(rectHalfSize);
                 optionText[0].setString(current->optionPrompts[0]);
                 optionRect[1].setSize(rectHalfSize);
+                optionRect[1].setPosition(rectHalfOffset, 900);
+                optionText[1].setPosition(rectHalfOffset, 900);
                 optionText[1].setString(current->optionPrompts[1]);
                 break;
             case 3:
                 optionRect[0].setSize(rectThirdSize);
                 optionText[0].setString(current->optionPrompts[0]);
                 optionRect[1].setSize(rectThirdSize);
+                optionRect[1].setPosition(rectThirdOffset, 900);
+                optionText[1].setPosition(rectThirdOffset, 900);
                 optionText[1].setString(current->optionPrompts[1]);
                 optionRect[2].setSize(rectThirdSize);
+                optionRect[2].setPosition(rectThirdOffset*2, 900);
+                optionText[2].setPosition(rectThirdOffset*2, 900);
                 optionText[2].setString(current->optionPrompts[2]);
                 break;
             case 4:
                 optionRect[0].setSize(rectFourthSize);
                 optionText[0].setString(current->optionPrompts[0]);
                 optionRect[1].setSize(rectFourthSize);
+                optionRect[1].setPosition(rectFourthOffset, 900);
+                optionText[1].setPosition(rectFourthOffset, 900);
                 optionText[1].setString(current->optionPrompts[1]);
                 optionRect[2].setSize(rectFourthSize);
+                optionRect[2].setPosition(rectFourthOffset*2, 900);
+                optionText[2].setPosition(rectFourthOffset*2, 900);
                 optionText[2].setString(current->optionPrompts[2]);
                 optionRect[3].setSize(rectFourthSize);
+                optionRect[3].setPosition(rectFourthOffset*3, 900);
+                optionText[3].setPosition(rectFourthOffset*3, 900);
                 optionText[3].setString(current->optionPrompts[3]);
                 break;
             default:
