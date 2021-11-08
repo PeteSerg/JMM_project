@@ -138,7 +138,6 @@ namespace scene{
                 //std::exit(0);
             }
             sprite.setTexture(texture);
-            sprite.setTextureRect(sf::IntRect(0, 0, 50, 50)); // Selects a 50px x 50px area of the texture to draw
             sprite.setScale(10,10);
             sprite.setPosition(710, 290);
             if(!ubuntuMono.loadFromFile("fonts/UbuntuMono-R.ttf")){
@@ -146,32 +145,16 @@ namespace scene{
                 //std::exit(0);
             }
             prompt.setFont(ubuntuMono);
-            prompt.setString("INITIALIZED");
             prompt.setPosition(sf::Vector2f(0, 0));
-            optionText[0].setFont(ubuntuMono);
-            optionText[0].setString("INITIALIZED");
-            optionText[0].setPosition(0, 900);
-            optionText[1].setFont(ubuntuMono);
-            optionText[1].setString("INITIALIZED");
-            optionText[1].setPosition(480, 900);
-            optionText[2].setFont(ubuntuMono);
-            optionText[2].setString("INITIALIZED");
-            optionText[2].setPosition(960, 900);
-            optionText[3].setFont(ubuntuMono);
-            optionText[3].setString("INITIALIZED");
-            optionText[3].setPosition(1440, 900);
-            // Init option rects
             optionRect[0].setPosition(0,900);
-            optionRect[0].setSize(rectFourthSize);
+            optionText[0].setPosition(0,900);
+            optionText[0].setFont(ubuntuMono);
+            optionText[1].setFont(ubuntuMono);
+            optionText[2].setFont(ubuntuMono);
+            optionText[3].setFont(ubuntuMono);
             optionRect[0].setFillColor(colors[0]);
-            optionRect[1].setPosition(480,900);
-            optionRect[1].setSize(rectFourthSize);
             optionRect[1].setFillColor(colors[1]);
-            optionRect[2].setPosition(960,900);
-            optionRect[2].setSize(rectFourthSize);
             optionRect[2].setFillColor(colors[2]);
-            optionRect[3].setPosition(1440,900);
-            optionRect[3].setSize(rectFourthSize);
             optionRect[3].setFillColor(colors[3]);
             reflectState();
         }
