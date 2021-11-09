@@ -1,0 +1,127 @@
+09/07/2021
+
+- Started to plan out what the project will look like
+and continued to brainstorm ideas for what kind of game we would
+like to make. Also browsed what kind of tools will be used in 
+order to create a functioning game.
+
+09/09/2021
+
+- Created the team repository on Github and started to 
+work on the first team presentation. Team roles were discussed as
+well as what kind of story we would like to pursue in the text-based
+aspect of the game.
+
+09/14/2021
+
+- Discussed how graphics will be implemented into the game as well as
+a way to format the window. It was decided that SFML will be the library
+that will be used to create the game since it supports things like graphics,
+separate game windows, and audio capabilities.
+
+09/16/2021
+
+- Spent time with the team and planned out what each game window will look
+like when it is rendered and what will be expected from the player as they
+continue to play through the game. Started to try and run SFML on each team
+members home computer so that they are able to develop and make contributions
+to the team repository.
+
+09/21/2021
+
+- Worked on the homework assignment involving our team project and creating 
+different branches to see how it works when different outcomes are being experimented
+with by different members. This led to a "topdown" and "main" branch of the game
+where one consisted of a character running around a screen to test functionality of
+movement in SFML and the other was more of a text-based approach with graphics.
+
+09/23/2021
+
+- Got story updates from Owen and decided how branching would work. It was 
+discussed whether or not different decisions would lead to completely different
+games or if decisions would ultimately lead to similar stories. The second option was
+chosen because it will make it less complicated to program stories when there are not
+four completely different branches at each crossroad.
+
+09/28/2021
+
+- Continued to work on story prompts mainly and discussed which direction we would
+like to go at each decision in the game. Also created windows for main and topdown that
+mirrored what we had discussed at previous meetings, with a moving graphic and a still-graphic
+with text options.
+
+09/30/2021
+
+- Spent time with team members troubleshooting SFML so that each member could compile source
+code on their local branches. This involved linking the SFML library and including certain
+header files through paths on compilation but it was still unsuccessful with some of the team
+members, we will continue to try and solve this issue.
+
+10/05/2021
+
+- Met with the team to work on our first checkpoint presentation, this consisted of updates
+relating to our work that had been done so far, mainly adding a user interface based on
+prototype designs made in class and discussed in previous meetings. Goals were set for the future,
+our main focus is to finish the story so that each team member can focus on programming.
+
+10/07/2021
+
+- Different routes were discussed with the game such as providing a main menu where the user
+would be able to start the game, exit, or go to more options. This will involve more training 
+with SFML and will still require that the program function correctly on member's computers.
+Compilation is still an issue and is being resolved.
+
+10/12/2021
+
+- Continued to write story branches that are based on each user decision at certain points in
+the game. Also set up SFML tutorial programs on each computer so that it could be determined
+if SFML would run locally. We worked on cutting down bulky parts of the story so that it would
+be a quicker read for the player.
+
+10/14/2021
+
+- Started to work on the second team checkpoint, this involved creating a flowchart so that our
+story could be better understood and less complicated. We also committed to the non-topdown approach
+to the game, instead opting for a text-based with graphics approach, this will allow the story to be 
+able to be implemented easier. Also started to prepare a base program for the upcoming live demo.
+
+10/19/2021
+
+- Finalized the main script for our story so that each team member could start to focus more
+on programming, although we will still be adding to the story as time goes on and more branches
+to each decision are required.
+
+10/21/2021
+
+- Started to seriously discuss creating a menu that was discussed at a previous meeting. The menu would 
+allow the user to simply cycle through three options, play, options, and exit. Each option when selected
+would take the player to the desired screen. More research will be needed to implement this using
+the SFML library.
+
+10/26/2021
+
+- We began to discuss implementation of navigation between the SFML windows. This will allow the player
+to be able to switch screens and continue through the game. This will involve more research into the SFML
+library. We also continue to discuss how the story will progress so that a more complete idea can be 
+visualized and planned for.
+
+10/28/2021
+
+- Resolved a problem with compilation so that a build file could be made. The build file now holds an
+executable that can be run on everyone's computer and receive input and change according to the input.
+This is a huge step toward being able to run SFML on everyone's computer.
+
+11/2/2021
+
+- We began to implement a decision tree that will relate to decisions the user makes at different points
+within the game. The tree handles different states that depend on what the user chooses and these choices
+are displayed beneath sprites on the screen. Currently only one sprite is being used but we have discussed
+the creation of others that relate to each choice.
+
+11/4/2021
+
+- We spent time discussing issues that a team member was having with the SFML window not showing fully on
+their screen. It was discovered that each player may not have the resolution that was originally programmed
+so we must now implement the drawing of a canvas that can adapt to each players screen so they are able to 
+view the entirety of the game. This will involve more research into how windows are rendered using SFML
+functions.
