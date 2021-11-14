@@ -18,7 +18,7 @@ namespace scene{
         };
 
         gameState badState = {"A bad game state has been reached.\nThis may be caused by the choice of an unimplemented option"
-        " or an incorrectly implemented nextState pointer", 0, 0, {""}, {0, 0, 0, 0}};
+        " or an incorrectly implemented nextState pointer", 0, 1, {""}, {0, 0, 0, 0}};
         gameState initialState = {"Initial state", 0, 1, {""}, {0, 0, 0, 0}};
         gameState* current = &initialState;
 
@@ -48,10 +48,17 @@ namespace scene{
 
         inline void readStateTree(){ // State tree is forever loaded
             std::ifstream file;
-            file.open("tree/jmm.tree");
+            //file.open("tree/jmm-optional.tree");
+            file.open(treeFileName);
             if(file.fail()){
-                std::cout<<"The file could not be opened.";
-                return;
+                std::cout<<treeFileName<<" could not be opened.";
+                file.close();
+                file.open("tree/fail.tree");
+                if(file.fail()){
+                    std::cout<<"FAIL: tree files could not be loaded. Check your /tree directory\n";
+                    file.close();
+                    return;
+                }
             }
             std::map<std::string, gameState*> map; // Refer to state by symbol "initial/next/etc"
             std::multimap<std::string, std::pair<int, gameState*>> wait; // If a nextState has not yet been defined
@@ -59,11 +66,10 @@ namespace scene{
             gameState *state;
             while(!file.eof()){
                 state = new gameState;
-                std::getline(file, line); //state init
+                std::getline(file, line);
                 if(!line.find("state")){// state is at 0
                     line = line.substr(6);
-                    if(line.find("init") == 0)
-                    current = state; // INIT STATE
+                    if(line.find("init") == 0) current = state; // init state
                     map.insert(std::pair<std::string, gameState*>(line, state)); // add symbol
                     std::multimap<std::string, std::pair<int, gameState*>>::iterator it;
                     while(wait.find(line) != wait.end()){
@@ -74,45 +80,45 @@ namespace scene{
                     }
                 }else{std::cout<<"state not found at 0 for line:"<<line<<'\n';return;}
 
-                std::getline(file, line); // prompt "This has been read from a file"
+                std::getline(file, line);
                 line = line.substr(line.find_first_not_of(" \n\r\t\f\v"));
                 if(!line.find("prompt")){
-                    line = line.substr(6);
+                    line = line.substr(7);
                     state->prompt = line;
                 }else{std::cout<<"prompt not found";return;}
 
-                std::getline(file, line); // sprite 0
+                std::getline(file, line);
                 line = line.substr(line.find_first_not_of(" \n\r\t\f\v"));
                 if(!line.find("sprite")){
                     line = line.substr(6);
                     state->sprite = std::stoi(line);
                 }else{std::cout<<"sprite index not found";return;}
 
-                std::getline(file, line); // options 1
+                std::getline(file, line);
                 line = line.substr(line.find_first_not_of(" \n\r\t\f\v"));
                 if(!line.find("options")){
                     line = line.substr(7);
                     state->options = std::stoi(line);
                 }else{std::cout<<"options index not found";return;}
 
-                std::getline(file, line); // optionPrompt{
+                std::getline(file, line);
                 line = line.substr(line.find_first_not_of(" \n\r\t\f\v"));
                 if(!line.find("optionPrompt{")){
-                    std::getline(file, line); // YOOOOOO
+                    std::getline(file, line);
                     line = line.substr(line.find_first_not_of(" \n\r\t\f\v"));
                     int i = 0;
                     while(line != "}"){
                         state->optionPrompts[i] = line;
-                        std::getline(file, line); // }
+                        std::getline(file, line);
                         line = line.substr(line.find_first_not_of(" \n\r\t\f\v"));
                         ++i;
                     }
                 }else{std::cout<<"optionPrompt{ not found";return;}
 
-                std::getline(file, line); // nextState{
+                std::getline(file, line);
                 line = line.substr(line.find_first_not_of(" \n\r\t\f\v"));
                 if(!line.find("nextState{")){
-                    std::getline(file, line); // next
+                    std::getline(file, line);
                     line = line.substr(line.find_first_not_of(" \n\r\t\f\v"));
                     int i = 0;
                     while(line != "}"){
@@ -126,9 +132,10 @@ namespace scene{
                     }
                 }else{std::cout<<"optionPrompt{ not found";return;}
             }
+            file.close();
         }
 
-        inline void reflectState(); // reflectState is used in init
+        inline void reflectState(); // reflectState is used in init()
 
         inline void init(){
             readStateTree();
@@ -160,7 +167,7 @@ namespace scene{
         }
 
         inline void destroy(){
-
+            // Only needed if you can reload the game
         }
 
         inline void render(){
@@ -177,51 +184,64 @@ namespace scene{
             }
         }
 
+        const std::string escaped = "\\"; // NEW LINE SUPPORT
+        inline std::string decode(std::string& input){
+            std::string::size_type pos = 0;
+            while((pos = input.find(escaped)) != std::string::npos){
+               //input.replace(pos, 2, "\n");
+               switch(input[pos+1]){
+                   case 'n': input.replace(pos, 2, "\n"); break;
+                   case '0': input.replace(pos, 2, ""); break;
+               }
+            }
+            return input;
+        }
+
         inline void reflectState(){ // Updates sfml objects to reflect those in current
-            prompt.setString(current->prompt); 
+            prompt.setString(decode(current->prompt)); 
             sprite.setTextureRect(sf::IntRect(current->sprite, 0, current->sprite + 50, 50));
             // TODO: handle options
             options = current->options;
             switch (current->options){
             case 1:
                 optionRect[0].setSize(rectWholeSize);
-                optionText[0].setString(current->optionPrompts[0]);
+                optionText[0].setString(decode(current->optionPrompts[0]));
                 break;
             case 2:
                 optionRect[0].setSize(rectHalfSize);
-                optionText[0].setString(current->optionPrompts[0]);
+                optionText[0].setString(decode(current->optionPrompts[0]));
                 optionRect[1].setSize(rectHalfSize);
                 optionRect[1].setPosition(rectHalfOffset, 900);
                 optionText[1].setPosition(rectHalfOffset, 900);
-                optionText[1].setString(current->optionPrompts[1]);
+                optionText[1].setString(decode(current->optionPrompts[1]));
                 break;
             case 3:
                 optionRect[0].setSize(rectThirdSize);
-                optionText[0].setString(current->optionPrompts[0]);
+                optionText[0].setString(decode(current->optionPrompts[0]));
                 optionRect[1].setSize(rectThirdSize);
                 optionRect[1].setPosition(rectThirdOffset, 900);
                 optionText[1].setPosition(rectThirdOffset, 900);
-                optionText[1].setString(current->optionPrompts[1]);
+                optionText[1].setString(decode(current->optionPrompts[1]));
                 optionRect[2].setSize(rectThirdSize);
                 optionRect[2].setPosition(rectThirdOffset*2, 900);
                 optionText[2].setPosition(rectThirdOffset*2, 900);
-                optionText[2].setString(current->optionPrompts[2]);
+                optionText[2].setString(decode(current->optionPrompts[2]));
                 break;
             case 4:
                 optionRect[0].setSize(rectFourthSize);
-                optionText[0].setString(current->optionPrompts[0]);
+                optionText[0].setString(decode(current->optionPrompts[0]));
                 optionRect[1].setSize(rectFourthSize);
                 optionRect[1].setPosition(rectFourthOffset, 900);
                 optionText[1].setPosition(rectFourthOffset, 900);
-                optionText[1].setString(current->optionPrompts[1]);
+                optionText[1].setString(decode(current->optionPrompts[1]));
                 optionRect[2].setSize(rectFourthSize);
                 optionRect[2].setPosition(rectFourthOffset*2, 900);
                 optionText[2].setPosition(rectFourthOffset*2, 900);
-                optionText[2].setString(current->optionPrompts[2]);
+                optionText[2].setString(decode(current->optionPrompts[2]));
                 optionRect[3].setSize(rectFourthSize);
                 optionRect[3].setPosition(rectFourthOffset*3, 900);
                 optionText[3].setPosition(rectFourthOffset*3, 900);
-                optionText[3].setString(current->optionPrompts[3]);
+                optionText[3].setString(decode(current->optionPrompts[3]));
                 break;
             default:
                 options = 0; // invalid -> set to zero to prevent fault

@@ -22,8 +22,19 @@ bool rightPressed, leftPressed, downPressed, upPressed = 0;
 bool leftClick = 0;
 sf::Vector2i mousePosWindow;
 sf::Vector2f mousePosView;
+std::string treeFileName = "tree/";
 
-int main(){
+int main(int argc, char* argv[]){
+    // Parse parameters
+    if(argc > 2){
+        std::cout<<"An invalid number of parameters were used. Parameters have been ignored.\n";
+        treeFileName += "jmm.tree";
+    }else if(argc == 2){
+        treeFileName += argv[1];
+    }else{
+        treeFileName += "jmm.tree";
+    }
+
     // Init window
     window = new sf::RenderWindow(videomode.getDesktopMode(), "Java minus minus", sf::Style::Fullscreen | sf::Style::Close);
     window->setFramerateLimit(145);

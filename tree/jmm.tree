@@ -1,11 +1,11 @@
 state init
-    prompt This has been read from a file
+    prompt This has been read from a file\nThis text is on a different line thats crazy
     sprite 0
     options 4
     optionPrompt{
-        Prompt with 3 options
+        Prompt with 3 opti\nons
         Prompt with 2 options
-        Prompt with 1 option
+        Prompt\n with 1 option
         last option
     }
     nextState{
@@ -15,12 +15,12 @@ state init
         lastOption
     }
 state 3options
-    prompt 3 options epic
+    prompt 3 op\ntions epic
     sprite 0
     options 3
     optionPrompt{
-        Prompt with 2 options
-        Prompt with 1 option
+        Prompt with 2 options\n
+        Prompt w\n\nith 1 option
         last option
     }
     nextState{
@@ -41,7 +41,7 @@ state 2options
         lastOption
     }
 state 1option
-    prompt 1 option amazing
+    prompt 1 option am\n\n\nazing
     sprite 0
     options 1
     optionPrompt{

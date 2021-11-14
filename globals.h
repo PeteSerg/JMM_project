@@ -7,6 +7,8 @@
 #pragma once
 enum class Scene {Default, Menu, TextBased, Lvl};
 
+/** Loads game tree from file specified in tree directory */
+extern std::string treeFileName;
 extern Scene currentScene;
 /** Render window. WARN: Can only be referenced by main thread */
 extern sf::RenderWindow *window;
