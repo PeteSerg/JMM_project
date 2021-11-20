@@ -14,7 +14,7 @@ namespace scene{
         std::vector<sf::Sprite> sprites;
         /** DEBUG: temp indicate purpose of menu*/
         sf::Font ubuntuMono;
-        sf::Text warn;
+        sf::Text warn, begin, quit;
         sf::Texture texture; // USED in sprite test
         /** END: DEBUG*/
 
@@ -23,19 +23,29 @@ namespace scene{
          * */
         inline void init(){ /** TODO: Implement */
             // initialize simple grey rectangle
-            sf::RectangleShape rect;
-            rect.setPosition(710.f, 290.f);
-            rect.setSize(sf::Vector2f(500.f, 500.f));
+            sf::RectangleShape rect, bruh;
+            rect.setPosition(610.f, 290.f);
+            rect.setSize(sf::Vector2f(250.f, 250.f));
             rect.setFillColor(sf::Color(64, 64, 128, 255));
             rects.push_back(rect);
+            bruh.setPosition(1110.f, 290.f);
+            bruh.setSize(sf::Vector2f(250.f, 250.f));
+            bruh.setFillColor(sf::Color(64, 64, 128, 255));
+            rects.push_back(bruh);
             // indicate purpose of menu
             if(!ubuntuMono.loadFromFile("fonts/UbuntuMono-R.ttf")){
                 std::cout<<"Could not load font from file";
                 std::exit(0);
             }
-            warn.setString("This is the menu scene (unimplemented). Click the box to switch to Level.");
+            warn.setString("       The Wall");
             warn.setFont(ubuntuMono);
-            warn.setPosition(sf::Vector2f(400, 930));
+            warn.setPosition(sf::Vector2f(810.f, 150.f));
+            begin.setString("Start");
+            begin.setFont(ubuntuMono);
+            begin.setPosition(sf::Vector2f(680.f, 390.f));
+            quit.setString("Commit");
+            quit.setFont(ubuntuMono);
+            quit.setPosition(sf::Vector2f(1180.f, 390.f));
         }
         /** Deletes all dynamically allocated memory
          *  Should be called if the scene is no longer
@@ -59,17 +69,25 @@ namespace scene{
             for(size_t i=0; i<sprites.size(); ++i){
                 window->draw(sprites[i]);
             }
+            window->draw(begin);
+            window->draw(quit);
         }
         /** Any game logic branches off from here **/
         inline void update(){ /** TODO: Implement */
             // Destroy current scene and initialize next
             // Switch to different scene based on menu selection
             if(leftClick){ // Find mouse position on leftClick
-                if(mousePosWindow.x >= 710.f && mousePosWindow.x <= 1210){
-                    if(mousePosWindow.y >= 290.f && mousePosWindow.y <= 790){
+            //1110.f, 290.f
+                if(mousePosWindow.x >= 610.f && mousePosWindow.x <= 860){
+                    if(mousePosWindow.y >= 290.f && mousePosWindow.y <= 540){
                         destroy();
-                        scene::lvl::init();
-                        currentScene = Scene::Lvl;
+                        scene::textbased::init();
+                        currentScene = Scene::TextBased;
+                    }
+                }
+                else if(mousePosWindow.x >= 1110.f && mousePosWindow.x <= 1360){
+                    if(mousePosWindow.y >= 290.f && mousePosWindow.y <= 540){
+                        exit(0);
                     }
                 }
             }

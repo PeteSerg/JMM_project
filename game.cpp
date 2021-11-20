@@ -11,8 +11,8 @@ void Game::initVariables(){
     delta = millis = 0;
     currentScene = Scene::Default;
     /** DEBUG: load menu currentScene*/
-    currentScene = Scene::TextBased;
-    scene::textbased::init();
+    currentScene = Scene::Menu;
+    scene::menu::init();
     /** END: Debug */
 }
 // The default scene is always initialized
