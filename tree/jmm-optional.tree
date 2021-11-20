@@ -1,6 +1,6 @@
 state init
     prompt A cab pulls up at the end of the alley, do you...
-    sprite 0
+    sprite 1
     options 4
     optionPrompt{
         Take the cab

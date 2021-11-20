@@ -199,7 +199,7 @@ namespace scene{
 
         inline void reflectState(){ // Updates sfml objects to reflect those in current
             prompt.setString(decode(current->prompt)); 
-            sprite.setTextureRect(sf::IntRect(current->sprite, 0, current->sprite + 50, 50));
+            sprite.setTextureRect(sf::IntRect(current->sprite * 50, 0, current->sprite + 50, 50));
             // TODO: handle options
             options = current->options;
             switch (current->options){
