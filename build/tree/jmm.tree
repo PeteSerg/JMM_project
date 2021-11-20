@@ -1,61 +1,55 @@
 state init
-    prompt This has been read from a file\nThis text is on a different line thats crazy
-    sprite 0
-    options 4
-    optionPrompt{
-        Prompt with 3 opti\nons
-        Prompt with 2 options
-        Prompt\n with 1 option
-        last option
-    }
-    nextState{
-        3options
-        2options
-        1option
-        lastOption
-    }
-state 3options
-    prompt 3 op\ntions epic
-    sprite 0
-    options 3
-    optionPrompt{
-        Prompt with 2 options\n
-        Prompt w\n\nith 1 option
-        last option
-    }
-    nextState{
-        2options
-        1option
-        lastOption
-    }
-state 2options
-    prompt 2 options super coolwow
+    prompt You take a moment to rest in the alley way. You've been lucky so far, they haven't found you yet, but you've been on the move for hours. You need to either get out of the city \nor find a place to hole up. At the end of the street a cab pulls up and let's out it's passengers. A cab could get you out of the city and it'd be nice for some rest but if \nArgoyle has sent your face out it could very well become a death sentence.
     sprite 0
     options 2
     optionPrompt{
-        Prompt with 1 option
-        last option
+        Take a cab
+        Continue on foot
     }
     nextState{
-        1option
-        lastOption
+        Take a cab
+        Continue on foot
     }
-state 1option
+state Take a cab
+    prompt Cautiously you walk out of the alley and hail the cab. You give him the name of a motel on the edge of the city and sink into the backseat as he pulls off. \nArriving at the motel, you notice that across the street from you is the park that runs along the shimmering wall that looms above the city. At the end of the street a suspicious black car \nturns the corner.
+    sprite 0
+    options 2
+    optionPrompt{
+        Go to park
+        Go to city
+    }
+    nextState{
+        Go to park
+        Go to city
+    }
+state Continue on foot
+    prompt You decide to continue on foot, and head towards the wall. As you get closer to the wall, you notice the park that runs along the shimmering wall that looms above the city. \nAt the end of the street a suspicious black car turns the corner.
+    sprite 0
+    options 2
+    optionPrompt{
+        Go to park
+        Go to city
+    }
+    nextState{
+        Go to park
+        Go to city
+    }
+state Go to park
+    prompt 2 options super coolwow
+    sprite 0
+    options 1
+    optionPrompt{
+        go to begin
+    }
+    nextState{
+        init
+    }
+state Go to city
     prompt 1 option am\n\n\nazing
     sprite 0
     options 1
     optionPrompt{
-        last option
-    }
-    nextState{
-        lastOption
-    }
-state lastOption
-    prompt The tree can also go back onto itself
-    sprite 0
-    options 1
-    optionPrompt{
-        back to init
+        go to beginning
     }
     nextState{
         init
