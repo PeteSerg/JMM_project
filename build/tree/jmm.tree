@@ -11,7 +11,7 @@ state init
         Continue on foot
     }
 state Take a cab
-    prompt Cautiously you walk out of the alley and hail the cab. You give him the name of a motel on the edge of the city and sink into the backseat as he pulls off. \nArriving at the motel, you notice that across the street from you is the park that runs along the shimmering wall that looms above the city. At the end of the street a suspicious black car \nturns the corner.
+    prompt Cautiously you walk out of the alley and hail the cab. You give him the name of a motel on the edge of the city and sink into the backseat as he pulls off. \nArriving at the motel, you notice that across the street from you is the park that runs along the shimmering wall that looms above the city. \nAt the end of the street a suspicious black car turns the corner.
     sprite 0
     options 2
     optionPrompt{
@@ -35,21 +35,81 @@ state Continue on foot
         Go to city
     }
 state Go to park
-    prompt 2 options super coolwow
+    prompt Dashing across the street you rush headlong into the park heading towards the wooded trails right along the wall. Behind you, you hear the slam of car doors as two of \nArgoyle's men give chase. Hitting the woods at a dead sprint the trees fly by on either side of the path. Through them glimpses of the wall can be seen. \nNo one knew what the glowing, ever shifting, wall was made of. Only that it was deadly to the touch. Probably a better way to go out than whatever Argoyle will do to you. \nAhead of you is a crossroads.
+    sprite 0
+    options 3
+    optionPrompt{
+        Take the left path
+        Take the right path
+        Hide in the woods
+    }
+    nextState{
+        Take the left path
+        Take the right path
+        Hide in the woods
+    }
+state Go to city
+    prompt You dash toward the city and see the black car pursue you, you take a right into an alley where another group of men block you in. You are trapped GAME OVER
     sprite 0
     options 1
     optionPrompt{
-        go to begin
+        GAME OVER. Retry?
     }
     nextState{
         init
     }
-state Go to city
-    prompt 1 option am\n\n\nazing
+state Take the left path
+    prompt You run along the fence that separates you from the wall. There are hurried footsteps behind you. 
+    sprite 0
+    options 2
+    optionPrompt{
+        Climb fence and run towards wall
+        Continue running along path
+    }
+    nextState{
+        Climb fence and run towards wall
+        Continue running along path
+    }
+state Take the right path
+    prompt You run along the fence that separates you from the wall. There are hurried footsteps behind you. 
+    sprite 0
+    options 2
+    optionPrompt{
+        Climb fence and run towards wall
+        Continue running along path
+    }
+    nextState{
+        Climb fence and run towards wall
+        Continue running along path
+    }
+state Hide in the woods
+    prompt You hunker down behind some bushes and wait. You can hear several groups pass in a hurry. You peek out to see two men looking around with some device in their hand. \nThen they turn right towards you. you've been spotted.
+    sprite 0
+    options 2
+    optionPrompt{
+        Climb fence and run towards wall
+        Continue running along path
+    }
+    nextState{
+        Climb fence and run towards wall
+        Continue running along path
+    }
+state Climb fence and run towards wall
+    prompt You climb the fence and run towards the shimmering wall. Behind you one of them yells "He's going for the wall!" \nYou reach for the wall and blinding light fills your vision, then it all goes black. 
     sprite 0
     options 1
     optionPrompt{
-        go to beginning
+        Prologue done RESET
+    }
+    nextState{
+        init
+    }
+state Continue running along path
+    prompt You continue to run as a group of men come out of the tree line in front of you. You try to double back, but you're surrounded. \nBefore you can think, you are hit from behind, and it all fades away GAME OVER 
+    sprite 0
+    options 1
+    optionPrompt{
+        GAME OVER. Try Again?
     }
     nextState{
         init
