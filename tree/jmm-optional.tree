@@ -1,0 +1,80 @@
+state init
+    prompt A cab pulls up at the end of the alley, do you...
+    sprite 1
+    options 4
+    optionPrompt{
+        Take the cab
+        Continue on foot
+        Go home
+        Try to find them
+    }
+    nextState{
+        Take the cab
+        Continue on foot
+        Go home
+        Try to find them
+    }
+state Take the cab
+    prompt Across the street you see a park that runs along the wall lining the city, do you... /n
+    sprite 0
+    options 4
+    optionPrompt{
+        Head into the park
+        Head into the city
+        Try to hail another cab
+        Go home
+    }
+    nextState{
+        Head into the park
+        Head into the city
+        Try to hail another cab
+        Go home
+    }
+state Continue on foot
+    prompt As you are walking down the street you hear a noise behind you. They're after you, do you... /n
+    sprite 0
+    options 4
+    optionPrompt{
+        Try to fight them
+        Run away
+        Duck into a restaurant
+        Jump into traffic
+    }
+    nextState{
+        Try to fight them
+        Run away
+        Duck into a restaurant
+        Jump into traffic
+    }
+state Go home
+    prompt You made it home, now do you want to...
+    sprite 0
+    options 4
+    optionPrompt{
+        Call the police
+        Go to bed
+        Watch TV
+        Feed the dog
+    }
+    nextState{
+        Call the police
+        Go to bed
+        Watch TV
+        Feed the dog
+    }
+state Try to find them
+    prompt After a long search you find them, do you...
+    sprite 0
+    options 4
+    optionPrompt{
+        Attack them right away
+        Try to hold them there while the police come
+        Pull the fire alarm
+        Throw something at them
+    }
+    nextState{
+        Attack them right away
+        Try to hold them there while the police come
+        Pull the fire alarm
+        Throw something at them
+    }

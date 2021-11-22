@@ -1,0 +1,10 @@
+state init
+    prompt The provided tree file could not be opened.\nCheck your arguments or your tree directory.
+    sprite 0
+    options 1
+    optionPrompt{
+        \0
+    }
+    nextState{
+        init
+    }
