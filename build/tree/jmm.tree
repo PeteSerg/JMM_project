@@ -1,5 +1,5 @@
 state init
-    prompt You take a moment to rest in the alley way. You've been lucky so far, they haven't found you yet, but you've been on the move for hours. You need to either get out of the city \nor find a place to hole up. At the end of the street a cab pulls up and let's out it's passengers. A cab could get you out of the city and it'd be nice for some rest but if \nArgoyle has sent your face out it could very well become a death sentence.
+    prompt You take a moment to rest in the alley way. \nYou've been lucky so far, they haven't found you yet, but you've been on the move for hours. \nYou need to either get out of the city or find a place to hole up. \nAt the end of the street a cab pulls up and let's out it's passengers. \nA cab could get you out of the city and it'd be nice for some rest but if \nArgoyle has sent your face out it could very well become a death sentence.
     sprite 0
     options 2
     optionPrompt{
@@ -11,8 +11,8 @@ state init
         Continue on foot
     }
 state Take a cab
-    prompt Cautiously you walk out of the alley and hail the cab. You give him the name of a motel on the edge of the city and sink into the backseat as he pulls off. \nArriving at the motel, you notice that across the street from you is the park that runs along the shimmering wall that looms above the city. \nAt the end of the street a suspicious black car turns the corner.
-    sprite 0
+    prompt Cautiously you walk out of the alley and hail the cab. \nYou give him the name of a motel on the edge of the city and sink into the backseat as he pulls off. \nArriving at the motel, you notice that across the street from you is the park that runs along the shimmering wall that looms \nabove the city. At the end of the street a suspicious black car turns the corner.
+    sprite 1
     options 2
     optionPrompt{
         Go to park
@@ -23,7 +23,7 @@ state Take a cab
         Go to city
     }
 state Continue on foot
-    prompt You decide to continue on foot, and head towards the wall. As you get closer to the wall, you notice the park that runs along the shimmering wall that looms above the city. \nAt the end of the street a suspicious black car turns the corner.
+    prompt You decide to continue on foot, and head towards the wall. \nAs you get closer to the wall, you notice the park that runs along the shimmering wall that looms above the city. \nAt the end of the street a suspicious black car turns the corner.
     sprite 0
     options 2
     optionPrompt{
@@ -35,7 +35,7 @@ state Continue on foot
         Go to city
     }
 state Go to park
-    prompt Dashing across the street you rush headlong into the park heading towards the wooded trails right along the wall. Behind you, you hear the slam of car doors as two of \nArgoyle's men give chase. Hitting the woods at a dead sprint the trees fly by on either side of the path. Through them glimpses of the wall can be seen. \nNo one knew what the glowing, ever shifting, wall was made of. Only that it was deadly to the touch. Probably a better way to go out than whatever Argoyle will do to you. \nAhead of you is a crossroads.
+    prompt Dashing across the street you rush headlong into the park heading towards the wooded trails right along the wall. \nBehind you, you hear the slam of car doors as two of Argoyle's men give chase. \nHitting the woods at a dead sprint the trees fly by on either side of the path. \nThrough them glimpses of the wall can be seen. No one knew what the glowing, ever shifting, wall was made of. \nOnly that it was deadly to the touch. Probably a better way to go out than whatever Argoyle will do to you. \nAhead of you is a crossroads.
     sprite 0
     options 3
     optionPrompt{
@@ -49,7 +49,7 @@ state Go to park
         Hide in the woods
     }
 state Go to city
-    prompt You dash toward the city and see the black car pursue you, you take a right into an alley where another group of men block you in. You are trapped GAME OVER
+    prompt You dash toward the city and see the black car pursue you, \nyou take a right into an alley where another group of men block you in. You are trapped GAME OVER
     sprite 0
     options 1
     optionPrompt{
@@ -83,7 +83,7 @@ state Take the right path
         Continue running along path
     }
 state Hide in the woods
-    prompt You hunker down behind some bushes and wait. You can hear several groups pass in a hurry. You peek out to see two men looking around with some device in their hand. \nThen they turn right towards you. you've been spotted.
+    prompt You hunker down behind some bushes and wait. You can hear several groups pass in a hurry. \nYou peek out to see two men looking around with some device in their hand. \nThen they turn right towards you. you've been spotted.
     sprite 0
     options 2
     optionPrompt{
@@ -95,7 +95,7 @@ state Hide in the woods
         Continue running along path
     }
 state Climb fence and run towards wall
-    prompt You climb the fence and run towards the shimmering wall. Behind you one of them yells "He's going for the wall!" \nYou reach for the wall and blinding light fills your vision, then it all goes black. 
+    prompt You climb the fence and run towards the shimmering wall. \nBehind you one of them yells "He's going for the wall!" \nYou reach for the wall and blinding light fills your vision, then it all goes black. 
     sprite 0
     options 1
     optionPrompt{
@@ -105,7 +105,7 @@ state Climb fence and run towards wall
         init
     }
 state Continue running along path
-    prompt You continue to run as a group of men come out of the tree line in front of you. You try to double back, but you're surrounded. \nBefore you can think, you are hit from behind, and it all fades away GAME OVER 
+    prompt You continue to run as a group of men come out of the tree line in front of you. \nYou try to double back, but you're surrounded. \nBefore you can think, you are hit from behind, and it all fades away GAME OVER 
     sprite 0
     options 1
     optionPrompt{
