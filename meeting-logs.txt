@@ -125,3 +125,33 @@ their screen. It was discovered that each player may not have the resolution tha
 so we must now implement the drawing of a canvas that can adapt to each players screen so they are able to 
 view the entirety of the game. This will involve more research into how windows are rendered using SFML
 functions.
+
+11/9/2021
+
+- Now that a story has been written and a tree has been created to handle different decisions in the story,
+we are discussing into more depth how sprites will be added so that the game can have a graphic component.
+This will involve creating a strip or array of pictures and then selecting certain sprites as the scenes
+continue. We also gave updates on our progress and continue to code different scenes for the final story
+tree.
+
+11/11/2021
+
+- We discussed how our final phase of the project will continue. The first issue that will be addressed
+is the ability of new lines to be able to be read by the window so that prompts can display correctly.
+A menu is also still being worked on so that the game has a real starting point. A new feature that will
+also be implemented is the ability to switch decision trees using the command line so multiple trees can
+be tested.
+
+11/16/2021
+
+- We talked about how we will prepare for the final presentation of the project and what still needs to
+be done, as well as delegating tasks to each team member. The tasks include updating the end flowchart
+for the story so the tree can be implemented easier, creating a working menu, and creating a full list
+of sprites that are able to be used at different points in the story.
+
+11/18/2021
+
+- The team gave updates on their progress since the past meeting. A menu has been developed and the process
+of creating decision trees for the game was refined so that it is easier for team members to switch to 
+certain pictures relating to the prompts. The project was also ran through different tools to be analyzed
+and documented.
