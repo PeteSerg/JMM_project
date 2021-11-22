@@ -1,0 +1,34 @@
+\hypertarget{game_8h_source}{}\doxysection{game.\+h}
+\label{game_8h_source}\index{JMM\_project/game.h@{JMM\_project/game.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{5 }
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include "{}globals.h"{}}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{keyword}{class }\mbox{\hyperlink{class_game}{Game}}}
+\DoxyCodeLine{9 \{}
+\DoxyCodeLine{10 \textcolor{keyword}{private}:}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12     \textcolor{keywordtype}{void} initVariables();}
+\DoxyCodeLine{13     \textcolor{keywordtype}{void} initScene();}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{15     \textcolor{comment}{// Clock}}
+\DoxyCodeLine{16     sf::Clock deltaClock; \textcolor{comment}{// Used for calculating \_\_ over time ratios}}
+\DoxyCodeLine{17     sf::Clock clock; \textcolor{comment}{// Does not reset. Overflow used for cyclical animation}}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{keyword}{public}:}
+\DoxyCodeLine{20     \mbox{\hyperlink{class_game}{Game}}(\textcolor{comment}{/* args */});}
+\DoxyCodeLine{21     \mbox{\hyperlink{class_game}{\string~Game}}();}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23     \textcolor{keywordtype}{void} tick();}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25     \textcolor{comment}{// Test data}}
+\DoxyCodeLine{26     \textcolor{keywordtype}{void} renderTestSprite();}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28     \textcolor{keywordtype}{void} update();}
+\DoxyCodeLine{29     \textcolor{keywordtype}{void} render();}
+\DoxyCodeLine{30 \};}
+
+\end{DoxyCode}

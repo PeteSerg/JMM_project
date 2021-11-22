@@ -1,0 +1,73 @@
+\hypertarget{event_8h_source}{}\doxysection{event.\+h}
+\label{event_8h_source}\index{JMM\_project/event.h@{JMM\_project/event.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{6 }
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include "{}globals.h"{}}}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 \textcolor{keyword}{class }\mbox{\hyperlink{class_event}{Event}}\{}
+\DoxyCodeLine{10 \textcolor{keyword}{public}:}
+\DoxyCodeLine{11     \textcolor{keywordtype}{void} update();}
+\DoxyCodeLine{12 \textcolor{keyword}{private}:}
+\DoxyCodeLine{13     sf::Event ev;}
+\DoxyCodeLine{14 \};}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16 \textcolor{keyword}{inline} \textcolor{keywordtype}{void} Event::update()\{}
+\DoxyCodeLine{17     \textcolor{keywordflow}{while}(window-\/>pollEvent(ev))\{}
+\DoxyCodeLine{18         \textcolor{keywordflow}{switch}(ev.type)\{}
+\DoxyCodeLine{19             \textcolor{keywordflow}{case} sf::Event::Closed:}
+\DoxyCodeLine{20                 window-\/>close();}
+\DoxyCodeLine{21                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{22             \textcolor{keywordflow}{case} sf::Event::KeyPressed:}
+\DoxyCodeLine{23                 \textcolor{keywordflow}{switch}(ev.key.code)\{}
+\DoxyCodeLine{24                     \textcolor{keywordflow}{case} sf::Keyboard::Escape:}
+\DoxyCodeLine{25                         window-\/>close();}
+\DoxyCodeLine{26                         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{27                     \textcolor{keywordflow}{case} sf::Keyboard::Right:}
+\DoxyCodeLine{28                         rightPressed = \textcolor{keyword}{true};}
+\DoxyCodeLine{29                         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{30                     \textcolor{keywordflow}{case} sf::Keyboard::Left:}
+\DoxyCodeLine{31                         leftPressed = \textcolor{keyword}{true};}
+\DoxyCodeLine{32                         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{33                     \textcolor{keywordflow}{case} sf::Keyboard::Down:}
+\DoxyCodeLine{34                         downPressed = \textcolor{keyword}{true};}
+\DoxyCodeLine{35                         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{36                     \textcolor{keywordflow}{case} sf::Keyboard::Up:}
+\DoxyCodeLine{37                         upPressed = \textcolor{keyword}{true};}
+\DoxyCodeLine{38                         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{39                 \}}
+\DoxyCodeLine{40                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{41             \textcolor{keywordflow}{case} sf::Event::KeyReleased:}
+\DoxyCodeLine{42                 \textcolor{keywordflow}{switch}(ev.key.code)\{}
+\DoxyCodeLine{43                     \textcolor{keywordflow}{case} sf::Keyboard::Right:}
+\DoxyCodeLine{44                         rightPressed = \textcolor{keyword}{false}; \textcolor{keywordflow}{break};}
+\DoxyCodeLine{45                     \textcolor{keywordflow}{case} sf::Keyboard::Left:}
+\DoxyCodeLine{46                         leftPressed = \textcolor{keyword}{false}; \textcolor{keywordflow}{break};}
+\DoxyCodeLine{47                     \textcolor{keywordflow}{case} sf::Keyboard::Down:}
+\DoxyCodeLine{48                         downPressed = \textcolor{keyword}{false}; \textcolor{keywordflow}{break};}
+\DoxyCodeLine{49                     \textcolor{keywordflow}{case} sf::Keyboard::Up:}
+\DoxyCodeLine{50                         upPressed = \textcolor{keyword}{false}; \textcolor{keywordflow}{break};}
+\DoxyCodeLine{51                 \}}
+\DoxyCodeLine{52                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{53             \textcolor{keywordflow}{case} sf::Event::MouseButtonPressed:}
+\DoxyCodeLine{54                 \textcolor{keywordflow}{switch}(ev.mouseButton.button)\{}
+\DoxyCodeLine{55                     \textcolor{keywordflow}{case} sf::Mouse::Button::Left:}
+\DoxyCodeLine{56                         leftClick = \textcolor{keyword}{true}; \textcolor{keywordflow}{break};}
+\DoxyCodeLine{57                 \}}
+\DoxyCodeLine{58                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{59             \textcolor{keywordflow}{case} sf::Event::MouseButtonReleased:}
+\DoxyCodeLine{60                 \textcolor{keywordflow}{switch}(ev.mouseButton.button)\{}
+\DoxyCodeLine{61                     \textcolor{keywordflow}{case} sf::Mouse::Button::Left:}
+\DoxyCodeLine{62                         leftClick = \textcolor{keyword}{false}; \textcolor{keywordflow}{break};}
+\DoxyCodeLine{63                 \}}
+\DoxyCodeLine{64                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{65         \}}
+\DoxyCodeLine{66     \}}
+\DoxyCodeLine{67     \textcolor{comment}{// Update mouse position}}
+\DoxyCodeLine{68     mousePosWindow = sf::Mouse::getPosition(*window);}
+\DoxyCodeLine{69     mousePosView = window-\/>mapPixelToCoords(mousePosWindow);}
+\DoxyCodeLine{70 \}}
+
+\end{DoxyCode}
