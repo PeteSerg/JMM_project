@@ -1,6 +1,6 @@
 state init
     prompt You take a moment to rest in the alley way. \nYou've been lucky so far, they haven't found you yet, but you've been on the move for hours. \nYou need to either get out of the city or find a place to hole up. \nAt the end of the street a cab pulls up and let's out it's passengers. \nA cab could get you out of the city and it'd be nice for some rest but if \nArgoyle has sent your face out it could very well become a death sentence.
-    sprite 0
+    sprite 1
     options 2
     optionPrompt{
         Take a cab
