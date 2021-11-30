@@ -12,7 +12,7 @@ state init
     }
 state Take a cab
     prompt Cautiously you walk out of the alley and hail the cab. \nYou give him the name of a motel on the edge of the city and sink into the backseat as he pulls off. \nArriving at the motel, you notice that across the street from you is the park that runs along the shimmering wall that looms \nabove the city. At the end of the street a suspicious black car turns the corner.
-    sprite 1
+    sprite 5
     options 2
     optionPrompt{
         Go to park
@@ -24,7 +24,7 @@ state Take a cab
     }
 state Continue on foot
     prompt You decide to continue on foot, and head towards the wall. \nAs you get closer to the wall, you notice the park that runs along the shimmering wall that looms above the city. \nAt the end of the street a suspicious black car turns the corner.
-    sprite 0
+    sprite 5
     options 2
     optionPrompt{
         Go to park
@@ -36,7 +36,7 @@ state Continue on foot
     }
 state Go to park
     prompt Dashing across the street you rush headlong into the park heading towards the wooded trails right along the wall. \nBehind you, you hear the slam of car doors as two of Argoyle's men give chase. \nHitting the woods at a dead sprint the trees fly by on either side of the path. \nThrough them glimpses of the wall can be seen. No one knew what the glowing, ever shifting, wall was made of. \nOnly that it was deadly to the touch. Probably a better way to go out than whatever Argoyle will do to you. \nAhead of you is a crossroads.
-    sprite 0
+    sprite 2
     options 3
     optionPrompt{
         Take the left path
@@ -49,18 +49,84 @@ state Go to park
         Hide in the woods
     }
 state Go to city
-    prompt You dash toward the city and see the black car pursue you, \nyou take a right into an alley where another group of men block you in. You are trapped GAME OVER
+    prompt You dash toward the city and see the black car pursue you, you take a right into an alley. \nYou come out of the otherside to an intersection you recognize. \nHeading straight will take you to a safehouse, while going right will take you to a train rail yard.
     sprite 0
+    options 2
+    optionPrompt{
+        Go straight (safehouse)
+        Go right (railyard)
+    }
+    nextState{
+        Go straight (safehouse)
+        Go right (railyard)
+    }
+state Go straight (safehouse)
+    prompt You head straight toward the safehouse. \nAs you approach, you notice an SUV parked in front of the safehouse. 
+    sprite 5
+    options 2
+    optionPrompt{
+        Go through front
+        Try the fire escape
+    }
+    nextState{
+        Go through front
+        Try the fire escape
+    }
+state Go through front
+    prompt You walk cautiously toward the front entrance. \nAs you approach, two men hop out of the SUV and grab you. GAME OVER
+    sprite 3
     options 1
     optionPrompt{
-        GAME OVER. Retry?
+        GAME OVER. Try again?
+    }
+    nextState{
+        init
+    }
+state Try the fire escape
+    prompt You hop onto a dumpster and climb the fire escape. \nAs you reach the top, a man grabs you and beats you to unconciousness. GAME OVER
+    sprite 3
+    options 1
+    optionPrompt{
+        GAME OVER. Try again?
+    }
+    nextState{
+        init
+    }
+state Go right (railyard)
+    prompt You head towards the rail yard, anxious to get out of the city. \nCrossing the street, you notice two men moving towards you from across the street. \nAs you run into the rail yard, a train start to depart, blocking you in.
+    sprite 4
+    options 2
+    optionPrompt{
+        Try to jump on train
+        Turn and fight
+    }
+    nextState{
+        Try to jump on train
+        Turn and fight
+    }
+state Try to jump on train
+    prompt You run right at the train and hop on just in time. \nThe goons can't catch up in time and are left in the dust. \nFeeling safe for now, you lie down to rest
+    sprite 4
+    options 1
+    optionPrompt{
+        TO BE CONTINUED... back to start
+    }
+    nextState{
+        init
+    }
+state Turn and fight
+    prompt You turn and prepare to fight. \nThe goons back you up against the train and beat you unconcious. GAME OVER
+    sprite 3
+    options 1
+    optionPrompt{
+        GAME OVER. Try again?
     }
     nextState{
         init
     }
 state Take the left path
     prompt You run along the fence that separates you from the wall. There are hurried footsteps behind you. 
-    sprite 0
+    sprite 2
     options 2
     optionPrompt{
         Climb fence and run towards wall
@@ -72,7 +138,7 @@ state Take the left path
     }
 state Take the right path
     prompt You run along the fence that separates you from the wall. There are hurried footsteps behind you. 
-    sprite 0
+    sprite 2
     options 2
     optionPrompt{
         Climb fence and run towards wall
@@ -84,7 +150,7 @@ state Take the right path
     }
 state Hide in the woods
     prompt You hunker down behind some bushes and wait. You can hear several groups pass in a hurry. \nYou peek out to see two men looking around with some device in their hand. \nThen they turn right towards you. you've been spotted.
-    sprite 0
+    sprite 2
     options 2
     optionPrompt{
         Climb fence and run towards wall
@@ -95,18 +161,62 @@ state Hide in the woods
         Continue running along path
     }
 state Climb fence and run towards wall
-    prompt You climb the fence and run towards the shimmering wall. \nBehind you one of them yells "He's going for the wall!" \nYou reach for the wall and blinding light fills your vision, then it all goes black. 
-    sprite 0
+    prompt You climb the fence and run towards the shimmering wall. \nBehind you one of them yells "He's going for the wall!" \nYou reach for the wall and blinding light fills your vision, then it all goes black. \nWhen you awaken, you are lying on your back in a bed. You can't see anything. 
+    sprite 6
+    options 2
+    optionPrompt{
+        Get up
+        Call out
+    }
+    nextState{
+        Get up
+        Call out
+    }
+state Get up
+    prompt You get up and wade through the darkness. After a few steps, a voice freezes you in your tracks. \n"You shouldn't do that." 
+    sprite 6
     options 1
     optionPrompt{
-        Prologue done RESET
+        Call out
+    }
+    nextState{
+        Call out
+    }
+state Call out
+    prompt You call out. "Hello? Who's there?" \nThe voice responds "Go back to your bed! You are in no condition to be up! \nLet me get someone to help." As you return to the bed, a door opens and a silhouette leaves. 
+    sprite 6
+    options 2
+    optionPrompt{
+        Try and escape through door
+        Stay and wait
+    }
+    nextState{
+        Try and escape through door
+        Stay and wait
+    }
+state Try and escape through door
+    prompt You get back up and move towards where the door was. \nAs you move through the darkness, you touch a wall. \nYou hear voices approaching.
+    sprite 6
+    options 1
+    optionPrompt{
+        TO BE CONTINUED... back to start
+    }
+    nextState{
+        init
+    }
+state Stay and wait
+    prompt You decide to wait. \nIf it was Argoyle who had you, you would already be dead.
+    sprite 6
+    options 1
+    optionPrompt{
+        TO BE CONTINUED... back to start
     }
     nextState{
         init
     }
 state Continue running along path
     prompt You continue to run as a group of men come out of the tree line in front of you. \nYou try to double back, but you're surrounded. \nBefore you can think, you are hit from behind, and it all fades away GAME OVER 
-    sprite 0
+    sprite 3
     options 1
     optionPrompt{
         GAME OVER. Try Again?
